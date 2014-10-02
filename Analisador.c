@@ -108,20 +108,6 @@ int testePalavraReservada (char *string){
 		return 0;
 }
 
-/*
-int main(int argc, char** argv) {
-    int i;
-    char palavra[50];
-    for (i=0; i<64; i++) {
-	   	strcpy(hash[stringParaInt(palavra_reservada[i])], palavra_reservada[i]); 
-	   	//printf("O indice chave %d foi definido para a string %s\n", stringParaInt(palavra_reservada[i]), palavra_reservada[i]);
-    }
-    printf("Entre com a string: ");
-    gets(palavra);
-    printf("O resultado foi: %d", testePalavraReservada(palavra));
-	return 0;
-}
-*/
 
 int lin = 1;
 extern FILE *fp;
@@ -138,7 +124,7 @@ token analex(void)
 	s = (char *) malloc(MAX * sizeof(char));
 	
 	if(!s){
-		printf("Falha na alocação");
+		printf("Falha na alocacao");
 	}
 	
 	temp = s;
@@ -160,19 +146,25 @@ token analex(void)
                 	
 				else if(c == '/')
 					estado = 1;				
-				else if( c == '!')
-					estado = 6;
 				else if( c == '<')
-					estado = 9;
+					estado = 6;
 				else if( c == '>')
-					estado = 12;
-				else if( c == '=')
+					estado = 10;
+				else if( c == '='){
+					estado = 13;
+					flag_estado_final = TRUE;
+				}
+				else if( c == ','){
+					estado = 14;
+					flag_estado_final = TRUE;
+				}
+				else if( c == ':')
 					estado = 15;
-				else if(c == '{'){
+				else if(c == '('){
 					estado = 18;
 					flag_estado_final = TRUE;
 				}	
-				else if( c == '}'){
+				else if( c == ')'){
 					estado = 19;
 					flag_estado_final = TRUE;
 				}	
@@ -196,45 +188,30 @@ token analex(void)
 					estado = 24;
 					flag_estado_final = TRUE;
 				}	
-				else if( c == '('){
+				else if( c == '.'){
 					estado = 25;
 					flag_estado_final = TRUE;
-				}	
-				else if( c == ')'){
-					estado = 26;
-					flag_estado_final = TRUE;
-				}	
-				else if( c == '\''){
+			
+				else if( c == '"'){
 					estado = 27;
 					flag_estado_final = TRUE;					
 				}	
-				else if( c == '"'){
-					estado = 31;
+				else if( c == '\''){
+					estado = 28;
 				}
-				else if( c == ','){
-					estado = 34;
-					flag_estado_final = TRUE;
-				}	
+					
 				else if(isdigit(c)){
-					estado = 35;
+					estado = 30;
 					*temp = c;
 					temp++;
 				}	
 				else if(isalpha(c)){
-					estado = 39;
+					estado = 34;
 					*temp = c;
 					temp++;
 				}
 
-				else if(c == '&'){
-					estado = 41;
-					flag_estado_final = TRUE;
-				}
-				
-				else if(c == '|'){
-					estado = 42;
-					flag_estado_final = TRUE;
-				}
+		
 				break;
 				
 			case 1:
@@ -246,8 +223,8 @@ token analex(void)
 					flag_estado_final = TRUE;
 				}				
 				break;
-				
 			//Retorna '/' como token valido	
+			
 			case 2:			
 				tk.cat = SN;				
 				tk.cod = DIV;
@@ -257,13 +234,13 @@ token analex(void)
 				break;
 			
 			case 3:
-				//Checa se o proximo caractere é asteristico
+				//Checa se o proximo caractere eh um asterisco
 				if(c == '*')
 					estado = 4;					
 				break;
 				
 			case 4:
-				//Se o proximo caractere for '/' vá para o estado 5
+				//Se o proximo caractere for '/' va� para o estado 5
 				if(c == '/'){
 					estado = 5;
 					flag_estado_final = TRUE;
@@ -278,116 +255,122 @@ token analex(void)
 				flag_estado_final = FALSE;
 				break;
 			
-			//Checa se o proximo caractere for um '=' va para o estado 7 senão va para o esatdo 8
+			//Checa se o proximo caractere for um '=' va para o estado 7 senao va para o esatdo 8
 			case 6:
-				if(c == '='){
+				if(c != '>' || != '='){
 					estado = 7;
 					flag_estado_final = TRUE;
 				}
 				else{
+					if(c == '>'){
 					estado = 8;
 					flag_estado_final = TRUE;
+					}
+				} else {
+					if(c == '='){
+					estado = 9;
+					flag_estado_final = TRUE;
+					}
 				}
 				
 				break;
-			
-			//Monta o token "!=" e retorna uma representação desse token  	
+
+			//Monta um token valido para '<'  	
 			case 7:
-				tk.cat = SN;
-				tk.cod = NE;				
-				return tk;				
-				break;
-			
-			//Retorna '!' como token valido	
-			case 8:
-				tk.cat = SN;				
-				tk.cod = NT;
-				ungetc(c, fp);
-				free(s);
-				return tk;
-				break;
-			
-			//Caso o proximo token for '=' vá para o estado 10
-			//Senão vá para o estado 11
-			case 9:
-				if(c == '='){
-					estado = 10;
-					flag_estado_final = TRUE;					
-				}				
-				else{
-				   estado = 11;	
-				   flag_estado_final = TRUE;
-				}   
-				break;
-			
-			//Monta um token valindo para "<=" 	
-			case 10:
-				tk.cat = SN;
-				tk.cod = LE;
-				free(s);
-				return tk;				
-				break;
-			
-			//Monta um token valido para '<'	
-			case 11:
 				tk.cat = SN;
 				tk.cod = LT;
 				ungetc(c, fp);
 				free(s);
 				return tk;
 				break;
+
+			//Monta o token "<>" e retorna uma representacao desse token  	
+			case 8:
+				tk.cat = SN;
+				tk.cod = NE;				
+				return tk;				
+				break;
 			
-			//Se proximo token for '=' vá para estado 13
-			//senão va para o estado 14
-			case 12:
+			//Caso o proximo token for '=' vai para o estado 9
+			//Monta o token "<=" e retorna uma representacao desse token  	
+			case 9:
+				tk.cat = SN;
+				tk.cod = LE;
+				free(s);
+				return tk;				
+				break;
+			
+			//Se proximo token for '=' va� para estado 11
+			//senao va para o estado 12
+			case 10:
 				
 				if(c == '='){
-					estado = 13;
+					estado = 11;
 					flag_estado_final = TRUE;
 				}
 				else{
-					estado = 14;
+					estado = 12;
 					flag_estado_final = TRUE;
 				}				
 				break;
-				
+			
+
 			//Monta o token valido para ">="
-			case 13:
+			case 11:
 				tk.cat = SN;
 				tk.cod = GE;
 				free(s);
 				return tk;
 				break;
-			
+
 			//Monta o teken valido para '>'
-			case 14:
+			case 12:
 				tk.cat = SN;
 				tk.cod = GT;
 				ungetc(c, fp);
 				free(s);
 				return tk;
 				break;
+			
 				
-			//Se o proximo token for '=' vá para o estado 16
-			//Senão vá para o estado 17
-			case 15:
-				if(c == '='){
-					estado = 16;
-					flag_estado_final = TRUE;
-				}
-				else{
-					estado = 17;
-					flag_estado_final = TRUE;
-				}
-				break;
-				
-			//Monta o token valido para "=="	
-			case 16:
+			//Monta o token valido para "="	
+			case 13:
 				tk.cat = SN;
 				tk.cod = EQ;
 				break;
+
+			//Monta o token valido para ','
+			case 14:
+				tk.cat = SN;
+				tk.cod = CMM;
+				free(s);
+				return tk;
+				break;
+
+			//Se proximo token for '=' va� para estado 17
+			//senao va para o estado 16
+			case 15:
 				
-			//Monta o token valido para '='	
+				if(c == '='){
+					estado = 17;
+					flag_estado_final = TRUE;
+				}
+				else{
+					estado = 16;
+					flag_estado_final = TRUE;
+				}				
+				break;
+				
+			//Monta o token valido para ':'	
+			case 16:
+				tk.cat = SN;
+				tk.cod = DEF;
+				ungetc(c, fp);
+				free(s);
+				return tk;
+				break;
+
+			//Monta o token valido para ':='	
 			case 17:
 				tk.cat = SN;
 				tk.cod = ATB;
@@ -395,6 +378,7 @@ token analex(void)
 				free(s);
 				return tk;
 				break;
+				
 				
 			//Monta um token valido para '{'	
 			case 18:
@@ -540,13 +524,7 @@ token analex(void)
 				printf("Quebra de linha não esperada na linha %d", lin);
 				break;
 			
-			//Monta o token valido para ','
-			case 34:
-				tk.cat = SN;
-				tk.cod = CMM;
-				free(s);
-				return tk;
-				break;
+			
 				
 			//Se o proximo token for digito continua no estado 35
 			//Se o proximo token for '.' vá para o estado 37
@@ -651,3 +629,33 @@ token analex(void)
 		}
 	}
 }
+
+			
+			/* COMENTARIOS IMPORTANTES
+			
+
+			UTILIZADO PARA NOT
+			Retorna 'not' como token valido	
+			
+			case 8:
+				tk.cat = SN;				
+				tk.cod = NT;
+				ungetc(c, fp);
+				free(s);
+				return tk;
+				break;
+
+				//Senão vá para o estado 11
+			case 9:
+				if(c == '='){
+					estado = 10;
+					flag_estado_final = TRUE;					
+				}				
+				else{
+				   estado = 11;	
+				   flag_estado_final = TRUE;
+				}   
+				break;
+			*/
+
+

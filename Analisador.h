@@ -20,7 +20,7 @@
 enum categoria{PR = 1, ID, CTI, CTR, CTL, CTS, SN};
 
 //Representação de sinais duplos
-enum tokens{GT = 1, GE, LT, LE, EQ, NE, NT, SUM, SUB, MUL, DIV, MOD, ATB, OPB, CLB, OPP, CLP, CMM, SMC, AND, OR};
+enum tokens{GT = 1, GE, LT, LE, EQ, NE, NT, SUM, SUB, MUL, DIV, MOD, ATB, DEF, OPB, CLB, OPP, CLP, CMM, SMC, AND, OR};
 
 //Palavras reservadas
 enum palavra_reservada{CHAR = 1, INT, FLOAT, VOID, IF, ELSE, WHILE, PUT, GET, MAIN};
