@@ -105,49 +105,49 @@
 			<y>464.0</y>
 			<final/>
 		</state>
-		<state id="22" name="q26">
+		<state id="22" name="q28">
 			<x>272.0</x>
-			<y>404.0</y>
+			<y>435.0</y>
 			<final/>
 		</state>
-		<state id="23" name="q27">
-			<x>298.0</x>
-			<y>507.0</y>
+		<state id="23" name="q29">
+			<x>288.0</x>
+			<y>551.0</y>
 			<final/>
 		</state>
-		<state id="24" name="q28">
-			<x>375.0</x>
-			<y>558.0</y>
+		<state id="24" name="q30">
+			<x>255.0</x>
+			<y>629.0</y>
 			<final/>
 		</state>
-		<state id="25" name="q29">
+		<state id="25" name="q31">
 			<x>184.0</x>
 			<y>372.0</y>
 			<final/>
 		</state>
-		<state id="26" name="q31">
-			<x>143.0</x>
-			<y>473.0</y>
+		<state id="26" name="q33">
+			<x>124.0</x>
+			<y>500.0</y>
 			<final/>
 		</state>
-		<state id="27" name="q30">
-			<x>197.0</x>
-			<y>474.0</y>
+		<state id="27" name="q32">
+			<x>190.0</x>
+			<y>507.0</y>
 			<final/>
 		</state>
-		<state id="28" name="q32">
-			<x>266.0</x>
-			<y>579.0</y>
+		<state id="28" name="q34">
+			<x>182.0</x>
+			<y>593.0</y>
 			<final/>
 		</state>
-		<state id="29" name="q33">
-			<x>79.0</x>
-			<y>496.0</y>
+		<state id="29" name="q35">
+			<x>69.0</x>
+			<y>516.0</y>
 			<final/>
 		</state>
-		<state id="30" name="q34">
-			<x>199.0</x>
-			<y>579.0</y>
+		<state id="30" name="q36">
+			<x>135.0</x>
+			<y>630.0</y>
 			<final/>
 		</state>
 		<state id="31" name="q2">
@@ -169,31 +169,31 @@
 			<y>238.0</y>
 			<final/>
 		</state>
+		<state id="35" name="q26">
+			<x>367.0</x>
+			<y>537.0</y>
+			<final/>
+		</state>
+		<state id="36" name="q27">
+			<x>465.0</x>
+			<y>501.0</y>
+			<final/>
+		</state>
 		<!--The list of transitions.-->
 		<transition>
 			<from>0</from>
-			<to>1</to>
-			<read>/</read>
+			<to>15</to>
+			<read>)</read>
 		</transition>
 		<transition>
-			<from>5</from>
-			<to>7</to>
-			<read>&gt;</read>
+			<from>25</from>
+			<to>26</to>
+			<read>,</read>
 		</transition>
 		<transition>
-			<from>0</from>
-			<to>18</to>
-			<read>*</read>
-		</transition>
-		<transition>
-			<from>32</from>
-			<to>34</to>
-			<read>E - =</read>
-		</transition>
-		<transition>
-			<from>5</from>
-			<to>8</to>
-			<read>=</read>
+			<from>26</from>
+			<to>28</to>
+			<read>E</read>
 		</transition>
 		<transition>
 			<from>29</from>
@@ -201,9 +201,19 @@
 			<read>E</read>
 		</transition>
 		<transition>
+			<from>5</from>
+			<to>8</to>
+			<read>=</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
+			<read>*</read>
+		</transition>
+		<transition>
 			<from>0</from>
-			<to>20</to>
-			<read>;</read>
+			<to>18</to>
+			<read>*</read>
 		</transition>
 		<transition>
 			<from>0</from>
@@ -211,19 +221,19 @@
 			<read>Branco</read>
 		</transition>
 		<transition>
-			<from>0</from>
-			<to>23</to>
-			<read>'</read>
-		</transition>
-		<transition>
-			<from>3</from>
-			<to>4</to>
-			<read>/</read>
-		</transition>
-		<transition>
 			<from>2</from>
 			<to>2</to>
 			<read>E - *</read>
+		</transition>
+		<transition>
+			<from>12</from>
+			<to>13</to>
+			<read>E</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>16</to>
+			<read>-</read>
 		</transition>
 		<transition>
 			<from>0</from>
@@ -232,13 +242,53 @@
 		</transition>
 		<transition>
 			<from>0</from>
-			<to>21</to>
-			<read>,</read>
+			<to>25</to>
+			<read>num</read>
 		</transition>
 		<transition>
 			<from>9</from>
-			<to>10</to>
-			<read>=</read>
+			<to>11</to>
+			<read>E - =</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>35</to>
+			<read>.</read>
+		</transition>
+		<transition>
+			<from>26</from>
+			<to>26</to>
+			<read>dig</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>5</to>
+			<read>&lt;</read>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>4</to>
+			<read>/</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>23</to>
+			<read>'</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>20</to>
+			<read>;</read>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>2</to>
+			<read>E - /</read>
+		</transition>
+		<transition>
+			<from>35</from>
+			<to>36</to>
+			<read>.</read>
 		</transition>
 		<transition>
 			<from>0</from>
@@ -247,28 +297,58 @@
 		</transition>
 		<transition>
 			<from>32</from>
-			<to>33</to>
+			<to>34</to>
+			<read>E - =</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>12</to>
 			<read>=</read>
 		</transition>
 		<transition>
 			<from>0</from>
-			<to>32</to>
-			<read>:</read>
+			<to>14</to>
+			<read>(</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>31</to>
+			<read>E</read>
+		</transition>
+		<transition>
+			<from>9</from>
+			<to>10</to>
+			<read>=</read>
 		</transition>
 		<transition>
 			<from>0</from>
-			<to>15</to>
-			<read>)</read>
+			<to>22</to>
+			<read>"</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>21</to>
+			<read>,</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>29</to>
+			<read>Letra</read>
+		</transition>
+		<transition>
+			<from>23</from>
+			<to>23</to>
+			<read>E - ' ou "</read>
+		</transition>
+		<transition>
+			<from>25</from>
+			<to>25</to>
+			<read>num</read>
 		</transition>
 		<transition>
 			<from>5</from>
 			<to>6</to>
 			<read>E - &gt; ou =</read>
-		</transition>
-		<transition>
-			<from>26</from>
-			<to>26</to>
-			<read>dig</read>
 		</transition>
 		<transition>
 			<from>24</from>
@@ -281,89 +361,14 @@
 			<read>'</read>
 		</transition>
 		<transition>
-			<from>1</from>
-			<to>2</to>
-			<read>*</read>
-		</transition>
-		<transition>
-			<from>25</from>
-			<to>26</to>
-			<read>,</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>25</to>
-			<read>num</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>14</to>
-			<read>(</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>22</to>
-			<read>"</read>
-		</transition>
-		<transition>
-			<from>3</from>
-			<to>2</to>
-			<read>E - /</read>
-		</transition>
-		<transition>
-			<from>12</from>
-			<to>13</to>
-			<read>E</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>5</to>
-			<read>&lt;</read>
-		</transition>
-		<transition>
-			<from>26</from>
-			<to>28</to>
-			<read>E</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>16</to>
-			<read>-</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>12</to>
-			<read>=</read>
-		</transition>
-		<transition>
-			<from>23</from>
-			<to>23</to>
-			<read>E - ' ou "</read>
-		</transition>
-		<transition>
-			<from>0</from>
-			<to>29</to>
-			<read>Letra</read>
-		</transition>
-		<transition>
-			<from>25</from>
-			<to>25</to>
-			<read>num</read>
-		</transition>
-		<transition>
-			<from>9</from>
-			<to>11</to>
-			<read>E - =</read>
-		</transition>
-		<transition>
 			<from>0</from>
 			<to>9</to>
 			<read>&gt;</read>
 		</transition>
 		<transition>
-			<from>1</from>
-			<to>31</to>
-			<read>E</read>
+			<from>2</from>
+			<to>3</to>
+			<read>*</read>
 		</transition>
 		<transition>
 			<from>25</from>
@@ -371,14 +376,29 @@
 			<read>E</read>
 		</transition>
 		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>/</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>7</to>
+			<read>&gt;</read>
+		</transition>
+		<transition>
+			<from>32</from>
+			<to>33</to>
+			<read>=</read>
+		</transition>
+		<transition>
 			<from>29</from>
 			<to>29</to>
 			<read>Letra ou Dig</read>
 		</transition>
 		<transition>
-			<from>2</from>
-			<to>3</to>
-			<read>*</read>
+			<from>0</from>
+			<to>32</to>
+			<read>:</read>
 		</transition>
 	</automaton>
 </structure>
