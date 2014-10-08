@@ -114,6 +114,13 @@ extern FILE *fp;
 
 token analex(void)
 {
+	
+	//ver qual o melhor local para incializar a tablea de palavra reservada
+	for (i=0; i<64; i++) {
+	   	strcpy(hash[stringParaInt(palavra_reservada[i])], palavra_reservada[i]); 
+	   	//printf("O indice chave %d foi definido para a string %s\n", stringParaInt(palavra_reservada[i]), palavra_reservada[i]);
+    }
+	
   	boolean flag_estado_final = FALSE;
 	int estado = 0;
 	int i;
@@ -585,6 +592,15 @@ token analex(void)
 				ungetc(c, fp);
 				
 				//Verifica se o comando em uma palavra reservada
+				
+				if (testePalavraReservada(s)) {
+					tk.cat = PR;
+					strcpy(tk.p_reservada, hash[stringParaInt(strlwr(s))]); 
+					free(s);
+					return tk;					
+				}
+				
+				/*código dos caras para ver se é palavra reservada
 				for(i = 0; *tabela[i].comando; i++){
 					if(strcmp(tabela[i].comando, s) == 0){
 						tk.cat = PR;
@@ -593,6 +609,7 @@ token analex(void)
 						return tk;
 					}						
 				}
+				*/
 				
 				//Monta um tokem para identificador
 				tk.cat = ID;
@@ -756,6 +773,7 @@ token analex(void)
 				for(i = 0; *tabela[i].comando; i++){
 					if(strcmp(tabela[i].comando, s) == 0){
 						tk.cat = PR;
+						strcpy()
 						tk.p_reservada = tabela[i].palavra;						
 						free(s);
 						return tk;
