@@ -249,7 +249,7 @@ token analex(void)
 				else
 					estado = 3;				
 				break;
-			//Fim de comentario	
+
 			case 5:
 				estado = 0;
 				flag_estado_final = FALSE;
@@ -380,18 +380,18 @@ token analex(void)
 				break;
 				
 				
-			//Monta um token valido para '{'	
+			//Monta um token valido para '('	
 			case 18:
 				tk.cat = SN;				
-				tk.cod = OPB;
+				tk.cod = OPP;
 				free(s);
 				return tk;
 				break;
 				
-			//Monta um token valido para '}'	
+			//Monta um token valido para ')'	
 			case 19:
 				tk.cat = SN;				
-				tk.cod = CLB;
+				tk.cod = CLP;
 				free(s);
 				return tk;
 				break;
@@ -435,28 +435,87 @@ token analex(void)
 				free(s);
 				return tk;
 				break;
+			
+			case 25:
 				
-			//Monta um token valido para '('	
+				if(c == '.'){
+					estado = 26;
+					flag_estado_final = TRUE;
+				}
+				else{
+					estado = 25;
+					flag_estado_final = TRUE;
+				}				
+				break;
+
+			//Monta um token valido para '.'	
 			case 25:
 				tk.cat = SN;
-				tk.cod = OPP;
+				tk.cod = DOT;
 				free(s);
 				return tk;
 				break;
 				
-			//Monta um token valido para ')'	
+			//Monta um token valido para '..'	
 			case 26:
 				tk.cat = SN;
-				tk.cod = CLP;
+				tk.cod = ARR;
 				free(s);
 				return tk;
 				break;
 				
 			
-			//Se caractere for digito ou letra estado = 28
-			//Se caractere for '\'' estado igual a 29;
-			
+			//Monta um token valido para ' " '	
 			case 27:
+				tk.cat = SN;
+				tk.cod = QTS;
+				free(s);
+				return tk;
+				break;
+			
+			case 28:
+				if(c == '\'' || c == '"'){
+					estado = 29;
+					flag_estado_final = TRUE;
+				}
+				else{
+					estado = 28;
+					flag_estado_final = TRUE;
+				}				
+				break;
+
+			case 29:
+				if(c == '\''){
+					estado = 28;
+					flag_estado_final = TRUE;
+				}
+				else{
+					estado = 29;
+					flag_estado_final = TRUE;
+				}				
+				break;
+
+			//Monta um token valido para '''	
+			case 28:
+				tk.cat = SN;
+				tk.cod = OAP;
+				free(s);
+				return tk;
+				break;
+				
+			//Monta um token valido para ' '' '	
+			case 29:
+				tk.cat = SN;
+				tk.cod = CAP;
+				free(s);
+				return tk;
+				break;
+
+			// CONTINUAR DAQUI. TA FEITO ATE Q29
+			// FAZER A PARTIR DO Q30
+
+
+			case 28:
 				if((isalpha(c)) || (isdigit(c))){				
 					estado = 28;
 					*temp = c;					
