@@ -198,17 +198,20 @@ token analex(void)
 				}	
 				else if( c == '\''){
 					estado = 28;
+					flag_estado_final = TRUE;					
 				}
 					
 				else if(isdigit(c)){
 					estado = 30;
 					*temp = c;
 					temp++;
+					flag_estado_final = TRUE;					
 				}	
 				else if(isalpha(c)){
 					estado = 34;
 					*temp = c;
 					temp++;
+					flag_estado_final = TRUE;					
 				}
 
 		
@@ -514,6 +517,102 @@ token analex(void)
 			// CONTINUAR DAQUI. TA FEITO ATE Q29
 			// FAZER A PARTIR DO Q30
 
+			case 30:
+				if(isdigit(c)){
+					*temp = c;
+					temp++;
+				}
+					
+				else if(c == '.'){
+					estado = 32;
+					*temp = c;
+					temp++;
+					flag_estado_final = TRUE;
+				}
+				else{
+					estado = 31;
+					flag_estado_final = TRUE;
+				}				
+				break;
+				
+			//Valida a constate de inteiros
+			case 31:
+				tk.cat = CTI;
+				tk.ivalor = atoi(s);
+				ungetc(c, fp);
+				free(s);
+				return tk;				
+				break;
+				
+			//Se o proximo valor for digito continue no estado 32
+			//Sen√£o v√° para o estado 33
+			case 32:
+				if(isdigit(c)){
+					*temp = c;
+					temp++;
+				}
+				else{
+					estado = 33;
+					flag_estado_final = TRUE;
+				}
+				break;
+				
+			//Valida uma constante real
+			case 33:
+				tk.cat = CTR;
+				tk.fvalor = atof(s);
+				ungetc(c, fp);
+				free(s);
+				return tk;
+				break;								
+
+			//Se o proximo token for letra ou digito continua no estado 34
+			//Se for qualquer coisa va para o estado 35	
+			case 34:
+				if((isalpha(c)) || (isdigit(c))){
+					*temp = c;
+					temp++;
+				}
+				else{
+					estado = 35;
+					flag_estado_final = TRUE;
+				}
+				break;
+				
+			//Checa monta um token de indetificador ou palavra reservada
+			case 35:				
+				*temp = '\0';
+				ungetc(c, fp);
+				
+				//Verifica se o comando em uma palavra reservada
+				for(i = 0; *tabela[i].comando; i++){
+					if(strcmp(tabela[i].comando, s) == 0){
+						tk.cat = PR;
+						tk.p_reservada = tabela[i].palavra;						
+						free(s);
+						return tk;
+					}						
+				}
+				
+				//Monta um tokem para identificador
+				tk.cat = ID;
+				strcpy(tk.lexema, s);
+				free(s);
+				return tk;				
+				break;				
+				
+				
+			//FIM DO NOSSO AUT‘MATO
+			
+			//DAQUI PRA BAIXO … C”DIGO ANTIGO
+			//TEM DOIS ESTADOS DO C”DIGO DELES QUE N√O EST¡ NO
+			//AUT‘MATO DELES, O 41 E 42.
+				
+				
+				
+				
+				
+								
 
 			case 28:
 				if((isalpha(c)) || (isdigit(c))){				
