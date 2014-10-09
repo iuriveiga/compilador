@@ -19,10 +19,10 @@ struct tabela_palavra_reservada{
 };
 */
 
-char palavra_reservada[64][10] = {"and", "array", "begin", "case", "const", "div", "do", "downto", "else", "end", "file", "for", 
+char palavra_reservada_hash[64][10] = {"and", "array", "begin", "case", "const", "div", "do", "downto", "else", "end", "file", "for", 
 "func", "goto", "if", "in", "label", "mod", "nil", "not", "of", "or", "packed", "proc", "progr", "record", "repeat", "set", "then", "to", "type",
 "until", "var", "while", "with", "char", "string", "integer", "real", "+", "-", "*", "/", "=", ".", ",", ";", ":", "'", "neq", "<", "<=", 
-">=", ">", "(", ")", "[", "]", "{", "}", "..", "@"} ;
+">=", ">", "(", ")", "[", "]", "{", "}", "..", "@"};
 
 char hash[113][10];
 
@@ -118,7 +118,7 @@ token analex(void)
 	//ver qual o melhor local para incializar a tablea de palavra reservada
 	int j;
 	for (j=0; j<64; j++) {
-	   	strcpy(hash[stringParaInt(palavra_reservada[j])], palavra_reservada[j]); 
+	   	strcpy(hash[stringParaInt(palavra_reservada_hash[j])], palavra_reservada_hash[j]); 
 	   	//printf("O indice chave %d foi definido para a string %s\n", stringParaInt(palavra_reservada[i]), palavra_reservada[i]);
     }
 	
@@ -198,10 +198,6 @@ token analex(void)
 				}	
 				else if( c == '.'){
 					estado = 25;
-					//o 25 não pode ser final, para considerar o token "."
-					//temos que fazer igual ao que reconhece só o "/"
-					//mudar o autômato
-					//flag_estado_final = TRUE;
 				}
 				else if( c == '"'){
 					estado = 27;
@@ -559,9 +555,22 @@ token analex(void)
 				ungetc(c, fp);
 				
 				//Verifica se o comando em uma palavra reservada
+				
 				if (testePalavraReservada(s)) {
 					tk.cat = PR;
-					strcpy(tk.p_reservada, strupr(hash[stringParaInt(strlwr(s))])); 
+					
+					//dificulada em como fazer um cast da palavra reservada para atribuir ao tk.p_recervada que é enum
+					
+					tk.p_reservada = static_cast<palavra_reservada>(strupr(hash[stringParaInt(strlwr(s))]));
+					
+					//tk.p_reservada = (palavra_reservada)Enum.Parse(typeof(palavra_reservada),strupr(hash[stringParaInt(strlwr(s))]));
+					//strcpy(tk.p_reservada, strupr(hash[stringParaInt(strlwr(s))])); 
+					//char aux[20];
+					//strcpy(aux, strupr(hash[stringParaInt(strlwr(s))])); 
+					//tk.p_reservada = (palavra_reservada)1;
+					//strupr(hash[stringParaInt(strlwr(s))]);
+					//strcpy(tk.p_reservada, strupr(hash[stringParaInt(strlwr(s))])); 
+					
 					free(s);
 					return tk;					
 				}
