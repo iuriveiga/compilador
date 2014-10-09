@@ -23,7 +23,9 @@ enum categoria{PR = 1, ID, CTI, CTR, CTL, CTS, SN};
 enum tokens{GT = 1, GE, LT, LE, EQ, NE, NT, SUM, SUB, MUL, DIV, MOD, ATB, DEF, OPB, CLB, OPP, CLP, CMM, SMC, AND, OR};
 
 //Palavras reservadas
-enum palavra_reservada{CHAR = 1, INT, FLOAT, VOID, IF, ELSE, WHILE, PUT, GET, MAIN};
+enum palavra_reservada{AND = 1, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END, FILE, FOR, FUNC, GOTO, IF, IN,
+LABEL, MOD, NIL, NOT, OF, OR, PACKED, PROC, PROGR, RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH, CHAR,
+STRING, INTEGER, REAL, NEQ};
 
 
 
