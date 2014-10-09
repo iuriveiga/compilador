@@ -584,7 +584,7 @@ token analex(void)
 				//Verifica se o comando em uma palavra reservada
 				if (testePalavraReservada(s)) {
 					tk.cat = PR;
-					strcpy(tk.p_reservada, hash[stringParaInt(strlwr(s))]); 
+					strcpy(tk.p_reservada, strupr(hash[stringParaInt(strlwr(s))])); 
 					free(s);
 					return tk;					
 				}
