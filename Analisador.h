@@ -17,7 +17,7 @@
 enum categoria{PR = 1, ID, CTI, CTR, CTL, CTS, SN};
 
 //Representação de sinais duplos
-enum tokens{GT = 1, GE, LT, LE, EQ, NE, NT, SUM, SUB, MUL, DIV, MOD, ATB, DEF, OPB, CLB, OPP, CLP, CMM, SMC, AND, OR};
+enum tokens{GT = 1, GE, LT, LE, EQ, NE, NT, SUM, SUB, MUL, DIV, MOD, ATB, DEF, OPB, CLB, OPP, CLP, CMM, SMC, AND, OR, DOT, ARR, QTS, CAP, OAP};
 
 //Palavras reservadas
 enum palavra_reservada{/*AND = 1,*/ ARRAY, BEGIN, CASE, CONST, /*DIV,*/ DO, DOWNTO, ELSE, END, /*FILE,*/ FOR, FUNC, GOTO, IF, IN,

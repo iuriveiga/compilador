@@ -198,7 +198,10 @@ token analex(void)
 				}	
 				else if( c == '.'){
 					estado = 25;
-					flag_estado_final = TRUE;
+					//o 25 não pode ser final, para considerar o token "."
+					//temos que fazer igual ao que reconhece só o "/"
+					//mudar o autômato
+					//flag_estado_final = TRUE;
 				}
 				else if( c == '"'){
 					estado = 27;
@@ -445,13 +448,13 @@ token analex(void)
 					flag_estado_final = TRUE;
 				}
 				else{
-					estado = 25;
+					estado = 36;
 					flag_estado_final = TRUE;
 				}				
 				break;
 
 			//Monta um token valido para '.'	
-			case 25:
+			case 36:
 				tk.cat = SN;
 				tk.cod = DOT;
 				free(s);
@@ -497,6 +500,7 @@ token analex(void)
 				break;
 
 			//Monta um token valido para '''	
+			
 			case 28:
 				tk.cat = SN;
 				tk.cod = OAP;
