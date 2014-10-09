@@ -198,34 +198,30 @@ token analex(void)
 				else if( c == '.'){
 					estado = 25;
 					flag_estado_final = TRUE;
-			
+				}
 				else if( c == '"'){
 					estado = 27;
 					flag_estado_final = TRUE;					
-				}	
+				}
 				else if( c == '\''){
 					estado = 28;
 					flag_estado_final = TRUE;					
 				}
-					
 				else if(isdigit(c)){
 					estado = 30;
 					*temp = c;
 					temp++;
 					flag_estado_final = TRUE;					
-				}	
+				}
 				else if(isalpha(c)){
 					estado = 34;
 					*temp = c;
 					temp++;
 					flag_estado_final = TRUE;					
 				}
-
-		
 				break;
 				
 			case 1:
-				
 				if(c == '*')
 					estado = 3;
 				else{
@@ -233,8 +229,8 @@ token analex(void)
 					flag_estado_final = TRUE;
 				}				
 				break;
+
 			//Retorna '/' como token valido	
-			
 			case 2:			
 				tk.cat = SN;				
 				tk.cod = DIV;
@@ -313,7 +309,6 @@ token analex(void)
 			//Se proximo token for '=' va° para estado 11
 			//senao va para o estado 12
 			case 10:
-				
 				if(c == '='){
 					estado = 11;
 					flag_estado_final = TRUE;
@@ -324,7 +319,6 @@ token analex(void)
 				}				
 				break;
 			
-
 			//Monta o token valido para ">="
 			case 11:
 				tk.cat = SN;
@@ -342,7 +336,6 @@ token analex(void)
 				return tk;
 				break;
 			
-				
 			//Monta o token valido para "="	
 			case 13:
 				tk.cat = SN;
@@ -388,7 +381,6 @@ token analex(void)
 				free(s);
 				return tk;
 				break;
-				
 				
 			//Monta um token valido para '('	
 			case 18:
@@ -447,7 +439,6 @@ token analex(void)
 				break;
 			
 			case 25:
-				
 				if(c == '.'){
 					estado = 26;
 					flag_estado_final = TRUE;
@@ -474,7 +465,6 @@ token analex(void)
 				return tk;
 				break;
 				
-			
 			//Monta um token valido para ' " '	
 			case 27:
 				tk.cat = SN;
@@ -592,24 +582,12 @@ token analex(void)
 				ungetc(c, fp);
 				
 				//Verifica se o comando em uma palavra reservada
-				
 				if (testePalavraReservada(s)) {
 					tk.cat = PR;
 					strcpy(tk.p_reservada, hash[stringParaInt(strlwr(s))]); 
 					free(s);
 					return tk;					
 				}
-				
-				/*cÛdigo dos caras para ver se È palavra reservada
-				for(i = 0; *tabela[i].comando; i++){
-					if(strcmp(tabela[i].comando, s) == 0){
-						tk.cat = PR;
-						tk.p_reservada = tabela[i].palavra;						
-						free(s);
-						return tk;
-					}						
-				}
-				*/
 				
 				//Monta um tokem para identificador
 				tk.cat = ID;
@@ -620,173 +598,11 @@ token analex(void)
 				
 				
 			//FIM DO NOSSO AUT‘MATO
+			//EXCLUI A PARTE DO C”DIGO ANTIGO
+			//TEM DOIS ESTADOS DO C”DIGO DELES QUE N√O EST√O NO
+			//AUT‘MATO DELES, O 41 E 42, AND E OR
 			
-			//DAQUI PRA BAIXO … C”DIGO ANTIGO
-			//TEM DOIS ESTADOS DO C”DIGO DELES QUE N√O EST¡ NO
-			//AUT‘MATO DELES, O 41 E 42.
-				
-				
-				
-				
-				
-								
-
-			case 28:
-				if((isalpha(c)) || (isdigit(c))){				
-					estado = 28;
-					*temp = c;					
-				}
-				if (c == '\''){
-					estado = 29;
-					*temp = '\0';
-					flag_estado_final = TRUE;
-				}									
-				break;
-				
-			//Se o proximo token for '\'' v√° para estado 29
-			case 28:
-				if(c == '\''){					
-					estado = 29;
-					flag_estado_final = TRUE;
-				}
-				else{
-					estado = 30;
-					flag_estado_final = TRUE;
-				}	
-				break;				
-			
-			//Monta uma constante de literais
-			case 29:
-				tk.cat = CTL;
-				strcpy(tk.lexema, s);
-				free(s);
-				return tk;
-				break;
-			
-			//Chama a mensagem de erro	
-			case 30:
-				printf("\' Esperado na linha %d", lin);
-				break;
-				
-			//Se o proximo token for qualquer coisa continue no estado 31
-			//Se o proximo token for '\"' v√° para o estado 32
-			//Se o proximo token for um retorno de carro va para o estado 33;
-			case 31:
-				if(c == '\r'){
-					estado = 33;
-					flag_estado_final = TRUE;
-				}
-				else if(c == '\"'){					
-					estado = 32;
-					flag_estado_final = TRUE;
-				}
-				else{
-					*temp = c;
-					temp++;
-				}				
-				break;
-				
-			//Monta a constante de string	
-			case 32:
-				tk.cat = CTS;
-				strcpy(tk.lexema, s);
-				free(s);
-				return tk;
-				break;
-			
-			//Chama a mensagem de erro	
-			case 33:
-				printf("Quebra de linha n√£o esperada na linha %d", lin);
-				break;
-			
-			
-				
-			//Se o proximo token for digito continua no estado 35
-			//Se o proximo token for '.' v√° para o estado 37
-			//sen√£o v√° para o estado 36
-			case 35:
-				if(isdigit(c)){
-					*temp = c;
-					temp++;
-				}
-					
-				else if(c == '.'){
-					estado = 37;
-					*temp = c;
-					temp++;
-				}
-				else{
-					estado = 36;
-					flag_estado_final = TRUE;
-				}				
-				break;
-			
-			//Valida a constate de inteiros
-			case 36:
-				tk.cat = CTI;
-				tk.ivalor = atoi(s);
-				ungetc(c, fp);
-				free(s);
-				return tk;				
-				break;
-			//Se o proximo valor for digito continue no estado 37
-			//Sen√£o v√° para o estado 38
-			case 37:
-				if(isdigit(c)){
-					*temp = c;
-					temp++;
-				}
-				else{
-					estado = 38;
-					flag_estado_final = TRUE;
-				}
-				break;
-			
-			//Valida uma constante real
-			case 38:
-				tk.cat = CTR;
-				tk.fvalor = atof(s);
-				ungetc(c, fp);
-				free(s);
-				return tk;
-				break;
-			
-			//Se o proximo token for letra ou digito continua no estado 39
-			//Se for qualquer coisa va para o estado 40	
-			case 39:
-				if((isalpha(c)) || (isdigit(c))){
-					*temp = c;
-					temp++;
-				}
-				else{
-					estado = 40;
-					flag_estado_final = TRUE;
-				}
-				break;
-			
-			//Checa monta um token de indetificador ou palavra reservada
-			case 40:				
-				*temp = '\0';
-				ungetc(c, fp);
-				
-				//Verifica se o comando em uma palavra reservada
-				for(i = 0; *tabela[i].comando; i++){
-					if(strcmp(tabela[i].comando, s) == 0){
-						tk.cat = PR;
-						strcpy()
-						tk.p_reservada = tabela[i].palavra;						
-						free(s);
-						return tk;
-					}						
-				}
-				
-				//Monta um tokem para identificador
-				tk.cat = ID;
-				strcpy(tk.lexema, s);
-				free(s);
-				return tk;				
-				break;
-			
+			/*
 			//Monta um tokem valido para AND
 			case 41:
 				tk.cat = SN;
@@ -802,6 +618,8 @@ token analex(void)
 				free(s);
 				return tk;
 				break;
+			*/
+
 		}
 	}
 }
