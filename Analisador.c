@@ -208,20 +208,18 @@ token analex(void)
 					flag_estado_final = TRUE;					
 				}
 				else if( c == '\''){
-					estado = 28;
-					flag_estado_final = TRUE;					
+					estado = 29;					
 				}
 				else if(isdigit(c)){
-					estado = 30;
+					estado = 31;
 					*temp = c;
 					temp++;
 					flag_estado_final = TRUE;					
 				}
 				else if(isalpha(c)){
-					estado = 34;
+					estado = 35;
 					*temp = c;
 					temp++;
-					flag_estado_final = TRUE;					
 				}
 				break;
 				
@@ -454,7 +452,7 @@ token analex(void)
 				break;
 
 			//Monta um token valido para '.'	
-			case 36:
+			case 27:
 				tk.cat = SN;
 				tk.cod = DOT;
 				free(s);
@@ -470,119 +468,93 @@ token analex(void)
 				break;
 				
 			//Monta um token valido para ' " '	
-			case 27:
+			case 28:
 				tk.cat = SN;
 				tk.cod = QTS;
 				free(s);
 				return tk;
 				break;
-			
-			case 28:
-				if(c == '\'' || c == '"'){
-					estado = 29;
-					flag_estado_final = TRUE;
-				}
-				else{
-					estado = 28;
-					flag_estado_final = TRUE;
-				}				
-				break;
 
 			case 29:
-				if(c == '\''){
-					estado = 28;
+				//Checa se o proximo caractere eh um asterisco
+				if(c == '\'')
+					estado = 30;
 					flag_estado_final = TRUE;
-				}
-				else{
-					estado = 29;
-					flag_estado_final = TRUE;
-				}				
-				break;
-
-			//Monta um token valido para '''	
-			
-			case 28:
-				tk.cat = SN;
-				tk.cod = OAP;
-				free(s);
-				return tk;
 				break;
 				
-			//Monta um token valido para ' '' '	
-			case 29:
-				tk.cat = SN;
-				tk.cod = CAP;
+			//Monta um token valido para fim de comentario	
+			case 30:
+				tk.cat = CTL;
+				strcpy(tk.lexema, s);
 				free(s);
 				return tk;
 				break;
 
-			// CONTINUAR DAQUI. TA FEITO ATE Q29
-			// FAZER A PARTIR DO Q30
-
-			case 30:
+			//Se o proximo token for digito continua no estado 31
+			//Se o proximo token for ',' vai para o estado 33
+			//sen„o vai para o estado 32
+			case 31:
 				if(isdigit(c)){
 					*temp = c;
 					temp++;
 				}
 					
-				else if(c == '.'){
-					estado = 32;
+				else if(c == ','){
+					estado = 33;
 					*temp = c;
 					temp++;
-					flag_estado_final = TRUE;
 				}
 				else{
-					estado = 31;
+					estado = 32;
 					flag_estado_final = TRUE;
 				}				
 				break;
-				
+			
 			//Valida a constate de inteiros
-			case 31:
+			case 32:
 				tk.cat = CTI;
 				tk.ivalor = atoi(s);
 				ungetc(c, fp);
 				free(s);
 				return tk;				
 				break;
-				
-			//Se o proximo valor for digito continue no estado 32
-			//Sen√£o v√° para o estado 33
-			case 32:
+			//Se o proximo valor for digito continue no estado 37
+			//Sen„o v· para o estado 38
+			case 33:
 				if(isdigit(c)){
 					*temp = c;
 					temp++;
 				}
 				else{
-					estado = 33;
+					estado = 34;
 					flag_estado_final = TRUE;
 				}
 				break;
-				
+			
 			//Valida uma constante real
-			case 33:
+			case 34:
 				tk.cat = CTR;
 				tk.fvalor = atof(s);
 				ungetc(c, fp);
 				free(s);
 				return tk;
-				break;								
+				break;						
 
 			//Se o proximo token for letra ou digito continua no estado 34
 			//Se for qualquer coisa va para o estado 35	
-			case 34:
+			case 35:
 				if((isalpha(c)) || (isdigit(c))){
 					*temp = c;
 					temp++;
 				}
 				else{
-					estado = 35;
+					estado = 36;
 					flag_estado_final = TRUE;
 				}
 				break;
 				
 			//Checa monta um token de indetificador ou palavra reservada
-			case 35:				
+			case 36:				
 				*temp = '\0';
 				ungetc(c, fp);
 				
@@ -600,61 +572,12 @@ token analex(void)
 				free(s);
 				return tk;				
 				break;				
-				
-				
-			//FIM DO NOSSO AUT‘MATO
-			//EXCLUI A PARTE DO C”DIGO ANTIGO
-			//TEM DOIS ESTADOS DO C”DIGO DELES QUE N√O EST√O NO
-			//AUT‘MATO DELES, O 41 E 42, AND E OR
-			
-			/*
-			//Monta um tokem valido para AND
-			case 41:
-				tk.cat = SN;
-				tk.cod = AND;
-				free(s);
-				return tk;
-				break;
-				
-			//Monta um tokem valido para OR
-			case 42:
-				tk.cat = SN;
-				tk.cod = OR;
-				free(s);
-				return tk;
-				break;
-			*/
+						
 
 		}
 	}
 }
 
 			
-			/* COMENTARIOS IMPORTANTES
-			
-
-			UTILIZADO PARA NOT
-			Retorna 'not' como token valido	
-			
-			case 8:
-				tk.cat = SN;				
-				tk.cod = NT;
-				ungetc(c, fp);
-				free(s);
-				return tk;
-				break;
-
-				//Sen√£o v√° para o estado 11
-			case 9:
-				if(c == '='){
-					estado = 10;
-					flag_estado_final = TRUE;					
-				}				
-				else{
-				   estado = 11;	
-				   flag_estado_final = TRUE;
-				}   
-				break;
-			*/
 
 
