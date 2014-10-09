@@ -116,8 +116,9 @@ token analex(void)
 {
 	
 	//ver qual o melhor local para incializar a tablea de palavra reservada
-	for (i=0; i<64; i++) {
-	   	strcpy(hash[stringParaInt(palavra_reservada[i])], palavra_reservada[i]); 
+	int j;
+	for (j=0; j<64; j++) {
+	   	strcpy(hash[stringParaInt(palavra_reservada[j])], palavra_reservada[j]); 
 	   	//printf("O indice chave %d foi definido para a string %s\n", stringParaInt(palavra_reservada[i]), palavra_reservada[i]);
     }
 	
@@ -263,20 +264,20 @@ token analex(void)
 			
 			//Checa se o proximo caractere for um '=' va para o estado 7 senao va para o esatdo 8
 			case 6:
-				if(c != '>' || != '='){
+				if((c != '>') || (c != '=')){
 					estado = 7;
 					flag_estado_final = TRUE;
 				}
 				else{
 					if(c == '>'){
-					estado = 8;
-					flag_estado_final = TRUE;
-					}
-				} else {
-					if(c == '='){
-					estado = 9;
-					flag_estado_final = TRUE;
-					}
+						estado = 8;
+						flag_estado_final = TRUE;
+					} else {
+						if(c == '='){
+						estado = 9;
+						flag_estado_final = TRUE;
+						}
+					}	 
 				}
 				
 				break;
