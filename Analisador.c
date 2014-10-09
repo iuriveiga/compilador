@@ -1,4 +1,4 @@
-#include "analisador.h"
+#include "Analisador.h"
 
 //Tabela de palavras
 
@@ -244,6 +244,7 @@ token analex(void)
 					flag_estado_final = TRUE;					
 				}
 				else if(isalpha(c)){
+					printf("passei aqui");
 					estado = 35;
 					*temp = c;
 					temp++;
@@ -570,6 +571,7 @@ token analex(void)
 			//Se o proximo token for letra ou digito continua no estado 34
 			//Se for qualquer coisa va para o estado 35	
 			case 35:
+				printf("passei aqui");
 				if((isalpha(c)) || (isdigit(c))){
 					*temp = c;
 					temp++;
@@ -610,6 +612,27 @@ token analex(void)
 	}
 }
 
-			
+
+
+FILE *fp;
+
+
+int main(int argc, char *argv[])
+{		
+	
+	if(argc != 2){
+		printf("Voce não informou o arquivo.\n");
+		exit(1);	
+   }
+	
+	if((fp = fopen(argv[1], "rb")) == NULL){
+		printf("Arquivo nao pode ser aberto.\n");
+		exit(1);
+	}
+	
+	analex();
+	
+	return 0;
+}			
 
 
