@@ -1,23 +1,54 @@
 #include "analisador.h"
 
 //Tabela de palavras
-/*
+
 struct tabela_palavra_reservada{
 	char comando[20];
 	char palavra;
 } tabela[] = {
-	"char", CHAR,
-	"int", INT,
-	"float", FLOAT,
-	"void", VOID,
-	"if", IF,
+	"and", AND,
+	"array", ARRAY,
+	"begin", BEGIN,
+	"case", CASE,
+	"const", CONST,
+	"div", DIV,
+	"do", DO,
+	"downto", DOWNTO,
 	"else", ELSE,
+	"end", END, 
+	//tem problema com o file, ele não aceita por causa do C
+	//"file", FILE,
+	"for", FOR,
+	"func", FUNC,
+	"goto", GOTO,
+	"if", IF,
+	"in", IN,
+	"label", LABEL,
+	"mod", MOD,
+	"nil", NIL,
+	"not", NOT,
+	"of", OF,
+	"or", OR,
+	"packed", PACKED,
+	"proc", PROC,
+	"progr", PROGR,
+	"record", RECORD,
+	"repeat", REPEAT,
+	"set", SET,
+	"then", THEN,
+	"to", TO,
+	"type", TYPE,
+	"until", UNTIL,
+	"var", VAR,
 	"while", WHILE,
-	"put", PUT,
-	"get", GET,
-	"main", MAIN,	
+	"with", WITH,
+	"char", CHAR,
+	"string", STRING, 
+	"integer", INTEGER,
+	"real", REAL,
+	"neq", NEQ
 };
-*/
+
 
 char palavra_reservada_hash[64][10] = {"and", "array", "begin", "case", "const", "div", "do", "downto", "else", "end", "file", "for", 
 "func", "goto", "if", "in", "label", "mod", "nil", "not", "of", "or", "packed", "proc", "progr", "record", "repeat", "set", "then", "to", "type",
@@ -557,22 +588,16 @@ token analex(void)
 				//Verifica se o comando em uma palavra reservada
 				
 				if (testePalavraReservada(s)) {
-					tk.cat = PR;
-					
-					//dificulada em como fazer um cast da palavra reservada para atribuir ao tk.p_recervada que é enum
-					
-					tk.p_reservada = static_cast<palavra_reservada>(strupr(hash[stringParaInt(strlwr(s))]));
-					
-					//tk.p_reservada = (palavra_reservada)Enum.Parse(typeof(palavra_reservada),strupr(hash[stringParaInt(strlwr(s))]));
-					//strcpy(tk.p_reservada, strupr(hash[stringParaInt(strlwr(s))])); 
-					//char aux[20];
-					//strcpy(aux, strupr(hash[stringParaInt(strlwr(s))])); 
-					//tk.p_reservada = (palavra_reservada)1;
-					//strupr(hash[stringParaInt(strlwr(s))]);
-					//strcpy(tk.p_reservada, strupr(hash[stringParaInt(strlwr(s))])); 
-					
-					free(s);
-					return tk;					
+					//aqui tem como melhorar pra não ter que fazer o loop para o retorno
+					//o problema é fazer cast pro tipo tk.p_reservada enum
+					for(i = 0; *tabela[i].comando; i++){
+						if(strcmp(tabela[i].comando, s) == 0){
+							tk.cat = PR;
+							tk.p_reservada = tabela[i].palavra;						
+							free(s);
+							return tk;
+						}						
+					}
 				}
 				
 				//Monta um tokem para identificador
@@ -581,8 +606,6 @@ token analex(void)
 				free(s);
 				return tk;				
 				break;				
-						
-
 		}
 	}
 }
