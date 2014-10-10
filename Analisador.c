@@ -16,7 +16,7 @@ struct tabela_palavra_reservada{
 	"downto", DOWNTO,
 	"else", ELSE,
 	"end", END, 
-	//tem problema com o file, ele não aceita por causa do C
+	//tem problema com o file, ele não aceita por causa da linguagem C
 	//"file", FILE,
 	"for", FOR,
 	"func", FUNC,
@@ -244,7 +244,6 @@ token analex(void)
 					flag_estado_final = TRUE;					
 				}
 				else if(isalpha(c)){
-					printf("passei aqui");
 					estado = 35;
 					*temp = c;
 					temp++;
@@ -571,7 +570,6 @@ token analex(void)
 			//Se o proximo token for letra ou digito continua no estado 34
 			//Se for qualquer coisa va para o estado 35	
 			case 35:
-				printf("passei aqui");
 				if((isalpha(c)) || (isdigit(c))){
 					*temp = c;
 					temp++;
@@ -591,7 +589,7 @@ token analex(void)
 				
 				if (testePalavraReservada(s)) {
 					//aqui tem como melhorar pra não ter que fazer o loop para o retorno
-					//o problema é fazer cast pro tipo tk.p_reservada enum
+					//o problema é fazer cast pro tipo tk.p_reservada enum ou mudar de enum pra const char* palavra_reservada[] {"and", "or"}
 					for(i = 0; *tabela[i].comando; i++){
 						if(strcmp(tabela[i].comando, s) == 0){
 							tk.cat = PR;
@@ -630,7 +628,19 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
-	analex();
+	token teste;
+	
+	do {
+		teste = analex();
+		//como está se trabalhando com enum fica complicado converter ela pra string é mais fácil exibir o código dela que a posição dela na sequência de inicialização		
+		printf("Categoria: %d\n", (int)teste.cat);
+		//como está se trabalhando com enum fica complicado converter ela pra string é mais fácil exibir o código dela que a posição dela na sequência de inicialização		
+		printf("Palavra Reservada: %d\n", (int)teste.p_reservada);
+		printf("Código: %d\n", (int)teste.cod);
+		printf("Valor Inteiro: %d\n", teste.ivalor);
+		printf("Lexema: %s\n\n\n", teste.lexema);		
+	} while (!feof(fp));
+	
 	
 	return 0;
 }			
