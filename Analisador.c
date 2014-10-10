@@ -368,8 +368,7 @@ token analex(void)
 			
 			//Monta o token valido para "="	
 			case 13:
-				printf("Considerando so o = e nao o ==");
-				system("pause");
+				//system("pause");
 				tk.cat = SN;
 				tk.cod = EQ;
 				break;
@@ -409,8 +408,8 @@ token analex(void)
 			//Monta o token valido para ':='
 			//tá ficando em loop no = e não tá formando o p´roximo token
 			case 17:
-				printf("cheguei no lugar que forma o token do :=");
-				system("pause");
+				printf("chegou no lugar que forma o token do :=\n");
+				//system("pause");
 				tk.cat = SN;
 				tk.cod = ATB;
 				//ungetc(c, fp);				
@@ -595,7 +594,6 @@ token analex(void)
 				//Verifica se o comando eh uma palavra reservada
 				
 				if (testePalavraReservada(s)) {
-					
 					//aqui tem como melhorar pra não ter que fazer o loop para o retorno
 					//o problema é fazer cast pro tipo tk.p_reservada enum ou mudar de enum pra const char* palavra_reservada[] {"and", "or"}
 					for(i = 0; *tabela[i].comando; i++){
