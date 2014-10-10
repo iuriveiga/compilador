@@ -1,4 +1,5 @@
 #include "Analisador.h"
+#include <stdlib.h>
 
 //Tabela de palavras
 
@@ -49,7 +50,7 @@ struct tabela_palavra_reservada{
 	"neq", NEQ
 };
 
-
+//pode tirar os simbolos especiais da lista de palavras reservadas já que estamos tratando eles diretamente no q0
 char palavra_reservada_hash[64][10] = {"and", "array", "begin", "case", "const", "div", "do", "downto", "else", "end", "file", "for", 
 "func", "goto", "if", "in", "label", "mod", "nil", "not", "of", "or", "packed", "proc", "progr", "record", "repeat", "set", "then", "to", "type",
 "until", "var", "while", "with", "char", "string", "integer", "real", "+", "-", "*", "/", "=", ".", ",", ";", ":", "'", "neq", "<", "<=", 
@@ -139,7 +140,6 @@ int testePalavraReservada (char *string){
 		return 0;
 }
 
-
 int lin = 1;
 extern FILE *fp;
 
@@ -172,7 +172,8 @@ token analex(void)
 		if(!flag_estado_final){
 			c = fgetc(fp);
 		}
-		
+		printf("%c\n", c);
+		//system("pause");
 		switch(estado){
 			case 0:
 			
@@ -241,7 +242,6 @@ token analex(void)
 					estado = 31;
 					*temp = c;
 					temp++;
-					flag_estado_final = TRUE;					
 				}
 				else if(isalpha(c)){
 					estado = 35;
@@ -402,7 +402,8 @@ token analex(void)
 				return tk;
 				break;
 
-			//Monta o token valido para ':='	
+			//Monta o token valido para ':='
+			//tá ficando em loop no = e não tá formando o p´roximo token
 			case 17:
 				tk.cat = SN;
 				tk.cod = ATB;
@@ -473,7 +474,7 @@ token analex(void)
 					flag_estado_final = TRUE;
 				}
 				else{
-					estado = 36;
+					estado = 27;
 					flag_estado_final = TRUE;
 				}				
 				break;
@@ -525,7 +526,6 @@ token analex(void)
 					*temp = c;
 					temp++;
 				}
-					
 				else if(c == ','){
 					estado = 33;
 					*temp = c;
@@ -610,14 +610,10 @@ token analex(void)
 	}
 }
 
-
-
 FILE *fp;
-
 
 int main(int argc, char *argv[])
 {		
-	
 	if(argc != 2){
 		printf("Voce não informou o arquivo.\n");
 		exit(1);	
@@ -640,7 +636,6 @@ int main(int argc, char *argv[])
 		printf("Valor Inteiro: %d\n", teste.ivalor);
 		printf("Lexema: %s\n\n\n", teste.lexema);		
 	} while (!feof(fp));
-	
 	
 	return 0;
 }			

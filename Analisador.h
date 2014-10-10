@@ -14,14 +14,14 @@
 #define FALSE 0
 
 //Representação da categoria
-enum categoria{PR = 1, ID, CTI, CTR, CTL, CTS, SN};
+enum categoria{PR = 1, ID, CTI, CTR, CTL, SN};
 
 //Representação de sinais duplos
-enum tokens{GT = 1, GE, LT, LE, EQ, NE, NT, SUM, SUB, MUL, DIV, MOD, ATB, DEF, OPB, CLB, OPP, CLP, CMM, SMC, AND, OR, DOT, ARR, QTS, CAP, OAP};
+enum tokens{GT = 1, GE, LT, LE, EQ, NE, SUM, SUB, MUL, DIV, MOD, ATB, DEF, CLB, OPP, CLP, CMM, SMC, DOT, ARR, QTS,};
 
 //Palavras reservadas
-enum palavra_reservada{/*AND = 1,*/ ARRAY, BEGIN, CASE, CONST, /*DIV,*/ DO, DOWNTO, ELSE, END, /*FILE,*/ FOR, FUNC, GOTO, IF, IN,
-LABEL, /*MOD,*/ NIL, NOT, OF, /*OR,*/ PACKED, PROC, PROGR, RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH, CHAR,
+enum palavra_reservada{AND = 1, ARRAY, BEGIN, CASE, CONST, /*DIV,*/ DO, DOWNTO, ELSE, END, /*FILE,*/ FOR, FUNC, GOTO, IF, IN,
+LABEL, /*MOD,*/ NIL, NOT, OF, OR, PACKED, PROC, PROGR, RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH, CHAR,
 STRING, INTEGER, REAL, NEQ};
 
 
