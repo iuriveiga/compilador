@@ -1,7 +1,6 @@
 #include "Analisador.h"
-
+#include "sintatico.h"
 #include <stdio.h>
-
 
 //Tabela de palavras
 
@@ -647,6 +646,8 @@ int main(int argc, char *argv[])
 		
 				
 	} while (!feof(fp));
+	
+	programa;
 	
 	return 0;
 }			

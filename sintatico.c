@@ -86,8 +86,8 @@ void declaracao_variaveis(void)
 	}	
 	
 	//Verifica se o token é do tipo INT
-	else if((tk.cat == PR) && (tk.p_reservada == INT)){
-		aux.tipo = INT;
+	else if((tk.cat == PR) && (tk.p_reservada == INTEGER)){
+		aux.tipo = INTEGER;
 		tk = analex();
 		
 		//Verifica se o proximo token é um identificador;
@@ -101,7 +101,7 @@ void declaracao_variaveis(void)
             }else{
                 novo.escopo = escopo;
                 novo.classe = VAR;
-                novo.tipo = INT;
+                novo.tipo = INTEGER;
                 strcpy(novo.lexema, aux.id);            
                 insere_simbolo(novo); 
        			//Verifica se o proximo token é ','
@@ -131,9 +131,9 @@ void declaracao_variaveis(void)
 		} else erro(lin, 1); //Chama a mesangem de erro
 	}	
 	
-	//Verifica se o tokem é um tipo FLOAT	
-	else if((tk.cat == PR) && (tk.p_reservada == FLOAT)){
-		aux.tipo = FLOAT;
+	//Verifica se o tokem é um tipo REAL	
+	else if((tk.cat == PR) && (tk.p_reservada == REAL)){
+		aux.tipo = REAL;
 		tk = analex();
 		
 		//Verifica se o proximo token é um identificador;
@@ -147,7 +147,7 @@ void declaracao_variaveis(void)
          }else{
             novo.escopo = escopo;
             novo.classe = VAR;
-            novo.tipo = FLOAT;
+            novo.tipo = REAL;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);
    			//Verifica se o proximo token é ','
@@ -202,6 +202,7 @@ void declaracao_funcao(void)
 				if((tk.cat == SN) && (tk.cod == CLP)){
 					tk = analex();
 					//Verifica se o proximo tokem é um '{'
+					/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 					if((tk.cat == SN) && (tk.cod == OPB)){
 						//Libreando aux
 						aux.sit = LIV;	
@@ -219,17 +220,17 @@ void declaracao_funcao(void)
 						} else erro(lin, 5); //Chama mensagem de erro Caso não venha '}' 
 						
 					} else erro(lin, 4); //Chama mensagem de erro caso não venh '{'
-												
+					*/							
 				} else erro(lin, 3); /*Chama mensagem de erro
 									 caso não venha ')' */
 			} else erro(lin, 2);						 
 		}		
-		//Verifica se o tipo é INT
-		else if(aux.tipo == INT){
+		//Verifica se o tipo é INTEGER
+		else if(aux.tipo == INTEGER){
              
             novo.escopo = escopo;
             novo.classe = FUNC;
-            novo.tipo = INT;
+            novo.tipo = INTEGER;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);        
              
@@ -240,6 +241,7 @@ void declaracao_funcao(void)
 				//Verifica se o proximo token é um ')'
 				if((tk.cat == SN) && (tk.cod == CLP)){
 					tk = analex();
+					/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 					//Verifica se o proximo tokem é um '{'
 					if((tk.cat == SN) && (tk.cod == OPB)){
 						//Libreando aux
@@ -259,17 +261,17 @@ void declaracao_funcao(void)
 						} else erro(lin, 5); //Chama mensagem de erro Caso não venha '}' 
 						
 					} else erro(lin, 4); //Chama mensagem de erro caso não venh '{'
-												
+				*/												
 				} else erro(lin, 3); /*Chama mensagem de erro
 									 caso não venha ')' */
 			} else erro(lin, 2);						 
 		}		
-		//Verifica se o tipo é FLOAT
-		else if(aux.tipo == FLOAT){
+		//Verifica se o tipo é REAL
+		else if(aux.tipo == REAL){
              
             novo.escopo = escopo;
             novo.classe = FUNC;
-            novo.tipo = FLOAT;
+            novo.tipo = REAL;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);        
              
@@ -281,6 +283,7 @@ void declaracao_funcao(void)
 				//Verifica se o proximo token é um ')'
 				if((tk.cat == SN) && (tk.cod == CLP)){
 					tk = analex();
+					/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 					//Verifica se o proximo tokem é um '{'
 					if((tk.cat == SN) && (tk.cod == OPB)){
 						//Libreando aux
@@ -301,7 +304,7 @@ void declaracao_funcao(void)
 						} else erro(lin, 5); //Chama mensagem de erro Caso não venha '}' 
 						
 					} else erro(lin, 4); //Chama mensagem de erro caso não venh '{'
-												
+				*/
 				} else erro(lin, 3); /*Chama mensagem de erro
 									 caso não venha ')' */
 			} else erro(lin, 2);						 
@@ -331,6 +334,7 @@ void declaracao_funcao(void)
 					//Verifica se o proximo token é um ')'
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
+						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 						//Verifica se o proximo token é um '{'
 						if((tk.cat == SN) && (tk.cod == OPB)){
 							tk = analex();
@@ -348,7 +352,7 @@ void declaracao_funcao(void)
 							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
 							
 						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-						
+					*/
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
@@ -356,15 +360,15 @@ void declaracao_funcao(void)
 			} else erro(lin, 1);//Chama a mensage de erro
 		}
 
-		//Verifica se o tipo é INT
-		if((tk.cat == PR) && (tk.p_reservada == INT)){
+		//Verifica se o tipo é INTEGER
+		if((tk.cat == PR) && (tk.p_reservada == INTEGER)){
 			tk = analex();
 			//Verifica se o proximo token é um identificador
 			if(tk.cat == ID){
                 
                 novo.escopo = escopo;
                 novo.classe = FUNC;
-                novo.tipo = INT;
+                novo.tipo = INTEGER;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                    
                       
@@ -377,6 +381,7 @@ void declaracao_funcao(void)
 					//Verifica se o proximo token é um ')'
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
+						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 						//Verifica se o proximo token é um '{'
 						if((tk.cat == SN) && (tk.cod == OPB)){
 							tk = analex();
@@ -395,7 +400,7 @@ void declaracao_funcao(void)
 							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
 							
 						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-						
+					*/
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
@@ -403,15 +408,15 @@ void declaracao_funcao(void)
 			} else erro(lin, 1);//Chama a mensage de erro
 		}
 
-		//Verifica se o tipo é FLOAT
-		if((tk.cat == PR) && (tk.p_reservada == FLOAT)){
+		//Verifica se o tipo é REAL
+		if((tk.cat == PR) && (tk.p_reservada == REAL)){
 			tk = analex();
 			//Verifica se o proximo token é um identificador
 			if(tk.cat == ID){
                  
                 novo.escopo = escopo;
                 novo.classe = FUNC;
-                novo.tipo = FLOAT;
+                novo.tipo = REAL;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                    
                       
@@ -426,6 +431,7 @@ void declaracao_funcao(void)
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
 						//Verifica se o proximo token é um '{'
+						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 						if((tk.cat == SN) && (tk.cod == OPB)){
 							tk = analex();
 							bloco_de_funcao();
@@ -442,7 +448,7 @@ void declaracao_funcao(void)
 							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
 							
 						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-						
+					*/
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
@@ -450,7 +456,9 @@ void declaracao_funcao(void)
 			} else erro(lin, 1);//Chama a mensage de erro
 		}
 
-        //Verifica se o tipo é VOID
+        
+		//Verifica se o tipo é VOID
+        /* no nosso nao tem void
 		if((tk.cat == PR) && (tk.p_reservada == VOID)){
 			tk = analex();
 			//Verifica se o proximo token é um identificador
@@ -470,6 +478,7 @@ void declaracao_funcao(void)
 					//Verifica se o proximo token é um ')'
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
+						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 						//Verifica se o proximo token é um '{'
 						if((tk.cat == SN) && (tk.cod == OPB)){
 							tk = analex();
@@ -487,32 +496,35 @@ void declaracao_funcao(void)
 							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
 							
 						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-						
+					*/ /*
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
 				
 			} else erro(lin, 1);//Chama a mensage de erro
-		}			
+		}
+		*/			
 	}
+	
 	
 }
 
 void declaracao_funcao_principal(void)
 {
      
-	if ((tk.cat == PR) && (tk.p_reservada == MAIN)){
+	if ((tk.cat == PR) && (tk.p_reservada == BEGIN)){
 		tk = analex();
 		
 		novo.escopo = escopo;
         novo.classe = FUNC;
-        strcpy(novo.lexema, "main");            
+        strcpy(novo.lexema, "begin");            
         insere_simbolo(novo); 
 		
 		
 		
 		escopo = LO; 
 		//Verificando se o token é um '{'
+		/*
 		if((tk.cat == SN) && (tk.cod == OPB)){
 			tk = analex();
 			bloco_de_funcao();
@@ -523,7 +535,8 @@ void declaracao_funcao_principal(void)
 				exit(0);//Finaliza a execução do programa
 			} else erro(lin, 5); //Chama mensagem de erro caso não venha '}'			
 			
-		} else erro(lin, 4); //Chama mesangem de erro caso não venha um '{' 		
+		} else erro(lin, 4); //Chama mesangem de erro caso não venha um '{'
+		*/ 		
 		
 	} else erro(lin, 6); // Chama uma mensagem de erro caso não venha o MAIN	
 }
@@ -548,15 +561,15 @@ void parametros_formais(void)
 		} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 	}
 	
-	//Verifica se o Tipo é INT
-	else if((tk.cat == PR) && (tk.p_reservada == INT)){
+	//Verifica se o Tipo é INTEGER
+	else if((tk.cat == PR) && (tk.p_reservada == INTEGER)){
 		tk = analex();
 		//verifica se o proximo token é um identificador
 		if(tk.cat == ID){
                   
             novo.escopo = escopo;
             novo.classe = PARAM;
-            novo.tipo = INT;
+            novo.tipo = INTEGER;
             strcpy(novo.lexema, tk.lexema);            
             insere_simbolo(novo);                 
                   
@@ -564,15 +577,15 @@ void parametros_formais(void)
 		} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 	}
 	
-	//Verifica se o tipo é FLOAT
-	else if((tk.cat == PR) && (tk.p_reservada == FLOAT)){
+	//Verifica se o tipo é REAL
+	else if((tk.cat == PR) && (tk.p_reservada == REAL)){
 		tk = analex();
 		//verifica se o proximo token é um identificador
 		if(tk.cat == ID){
             
             novo.escopo = escopo;
             novo.classe = PARAM;
-            novo.tipo = FLOAT;
+            novo.tipo = REAL;
             strcpy(novo.lexema, tk.lexema);            
             insere_simbolo(novo);                  
                   
@@ -599,15 +612,15 @@ void parametros_formais(void)
 			} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 		}
 	
-		//Verifica se o Tipo é INT
-		else if((tk.cat == PR) && (tk.p_reservada == INT)){
+		//Verifica se o Tipo é INTEGER
+		else if((tk.cat == PR) && (tk.p_reservada == INTEGER)){
 			tk = analex();
 			//verifica se o proximo token é um identificador
 			if(tk.cat == ID){
                 
                 novo.escopo = escopo;
                 novo.classe = PARAM;
-                novo.tipo = INT;
+                novo.tipo = INTEGER;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                  
                       
@@ -615,15 +628,15 @@ void parametros_formais(void)
 			} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 		}
 	
-		//Verifica se o tipo é FLOAT
-		else if((tk.cat == PR) && (tk.p_reservada == FLOAT)){
+		//Verifica se o tipo é REAL
+		else if((tk.cat == PR) && (tk.p_reservada == REAL)){
 			tk = analex();
 			//verifica se o proximo token é um identificador
 			if(tk.cat == ID){
                  
                  novo.escopo = escopo;
                  novo.classe = PARAM;
-                 novo.tipo = FLOAT;
+                 novo.tipo = REAL;
                  strcpy(novo.lexema, tk.lexema);            
                  insere_simbolo(novo);                 
                       
@@ -825,7 +838,9 @@ void comando_condicional(void)
 			//verifica se o proximo token é um ')'
 			if((tk.cat == SN) && (tk.cod == CLP)){
 				tk = analex();
+				
 				//Verifica se o proximo token é um '{'
+				/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 				if((tk.cat == SN) && (tk.cod == OPB)){
 					tk = analex();
 					comando();
@@ -836,7 +851,7 @@ void comando_condicional(void)
 					} else erro( lin, 5); //chama erro caso não venha '}'
 					
 				} else erro(lin, 4); // chama err caso não venha '{'
-				
+			*/	
 			} else erro(lin, 3); // chama erro caso não venha ')'
 			
 		} else erro(lin, 2); // chama o erro caso não venha um '('
@@ -847,6 +862,7 @@ void comando_condicional(void)
 	else if((tk.cat == PR) && (tk.p_reservada == ELSE)){
 		tk = analex();
 		//Verifica se o proximo token é um '{'
+		/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 		if((tk.cat == SN) && (tk.cod == OPB)){
 			tk = analex();
 			comando();
@@ -855,8 +871,8 @@ void comando_condicional(void)
 				tk = analex();
 				comando();
 			} else erro(lin, 5); //chama erro caso não venha '}'
-			
 		} else erro(lin, 4); //chama erro caso não venha '{'
+		*/
 	}
 }
 
@@ -873,6 +889,7 @@ void comando_repetitivo(void)
 			if((tk.cat == SN) && (tk.cod == CLP)){
 				tk = analex();
 				//Verifica se o proximo token é '{'
+				/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
 				if((tk.cat == SN) && (tk.cod == OPB)){
 					tk = analex();
 					comando();
@@ -883,7 +900,7 @@ void comando_repetitivo(void)
 					} else erro(lin, 5);//Chama erro caso não venha '}'
 					
 				} else erro(lin, 4); //chama erro caso não venha '{'
-				
+			*/				
 			} else erro(lin, 3); //Chama erro caso não venha ')'
 			
 		} else erro(lin, 2);//Chama erro caso não venha '('
@@ -1066,12 +1083,12 @@ int fator(void)
   	
   if(tk.cat == CTI){
     tk = analex();
-    return INT;
+    return INTEGER;
   }
   	   
   else if(tk.cat == CTR){
     tk = analex();
-    return FLOAT;
+    return REAL;
   }
   else if(tk.cat == ID){
      tipo1 = variavel();
