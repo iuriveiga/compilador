@@ -1,4 +1,5 @@
 #include "Analisador.h"
+#include "sintatico.h"
 
 //Tabela de palavras
 
@@ -611,7 +612,7 @@ token analex(void)
 }
 
 
-
+/*
 FILE *fp;
 
 
@@ -638,11 +639,36 @@ int main(int argc, char *argv[])
 		printf("Palavra Reservada: %d\n", (int)teste.p_reservada);
 		printf("Código: %d\n", (int)teste.cod);
 		printf("Valor Inteiro: %d\n", teste.ivalor);
-		printf("Lexema: %s\n\n\n", teste.lexema);		
+		printf("Lexema: %s\n\n\n", teste.lexema);
+		
+				
 	} while (!feof(fp));
 	
 	
 	return 0;
 }			
 
+*/
+
+FILE *fp;
+
+
+int main(int argc, char *argv[])
+{		
+	
+	if(argc != 2){
+		printf("Voce não informou o arquivo.\n");
+		exit(1);	
+   }
+	
+	if((fp = fopen(argv[1], "rb")) == NULL){
+		printf("Arquivo nao pode ser aberto.\n");
+		exit(1);
+	}
+	
+	programa();
+	
+	
+	return 0;
+}	
 
