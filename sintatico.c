@@ -1195,3 +1195,5 @@ void erro(int lin, int err)
             	
 	}	
 }
+
+

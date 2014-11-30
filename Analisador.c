@@ -647,8 +647,7 @@ int main(int argc, char *argv[])
 				
 	} while (!feof(fp));
 	
-	programa;
-	
+
 	return 0;
 }			
 
