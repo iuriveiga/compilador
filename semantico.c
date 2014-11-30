@@ -159,15 +159,15 @@ void imprime_tabela(void)
    
    for(i = topo; i >= base; i--){
        if(t_simb[i].classe == VAR){
-            if(t_simb[i].tipo == INT){
+            if(t_simb[i].tipo == INTEGER){
                 printf("%s ",t_simb[i].lexema);
                 printf("VAR ");
-                printf("INT ");
+                printf("INTEGER ");
                 printf("%d\n ",t_simb[i].escopo);                 
-            }else if(t_simb[i].tipo == FLOAT){
+            }else if(t_simb[i].tipo == REAL){
                 printf("%s ",t_simb[i].lexema);
                 printf("VAR ");
-                printf("FLOAT ");
+                printf("REAL ");
                 printf("%d\n ",t_simb[i].escopo);     
             }else if(t_simb[i].tipo == CHAR){
                 printf("%s ",t_simb[i].lexema);
@@ -176,13 +176,13 @@ void imprime_tabela(void)
                 printf("%d\n ",t_simb[i].escopo);     
             }                                   
        }else if(t_simb[i].classe == PARAM){
-            if(t_simb[i].tipo == INT){
+            if(t_simb[i].tipo == INTEGER){
                 printf("%s ",t_simb[i].lexema);
                 printf("PARAM ");
-                printf("INT ");
+                printf("INTEGER ");
                 printf("%d ",t_simb[i].escopo);
                 printf("%d\n ",t_simb[i].zombie);                 
-            }else if(t_simb[i].tipo == FLOAT){
+            }else if(t_simb[i].tipo == REAL){
                 printf("%s ",t_simb[i].lexema);
                 printf("PARAM ");
                 printf("FLOAT ");
@@ -197,27 +197,27 @@ void imprime_tabela(void)
             }                                    
        }else if(t_simb[i].classe == FUNC){
              
-             if(t_simb[i].tipo == INT){
+             if(t_simb[i].tipo == INTEGER){
                 printf("%s ",t_simb[i].lexema);
                 printf("FUNC ");
-                printf("INT ");
+                printf("INTEGER ");
                 printf("%d\n ",t_simb[i].escopo);                 
-            }else if(t_simb[i].tipo == FLOAT){
+            }else if(t_simb[i].tipo == REAL){
                 printf("%s ",t_simb[i].lexema);
                 printf("FUNC ");
-                printf("FLOAT ");
+                printf("REAL ");
                 printf("%d\n ",t_simb[i].escopo);     
             }else if(t_simb[i].tipo == CHAR){
                 printf("%s ",t_simb[i].lexema);
                 printf("FUNC ");
                 printf("CHAR ");
                 printf("%d\n ",t_simb[i].escopo);     
-            }else if(t_simb[i].tipo == VOID){
+            }/*else if(t_simb[i].tipo == VOID){
                 printf("%s ",t_simb[i].lexema);
                 printf("FUNC ");
                 printf("VOID ");
                 printf("%d\n ",t_simb[i].escopo);     
-            }                         
+            }*/                         
        }        
    }
           

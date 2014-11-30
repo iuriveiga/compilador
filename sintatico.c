@@ -780,7 +780,7 @@ int chamada_de_funcao2(void)
          if(tk.cod == CLP){
              aux.sit = LIV; 
                 
-             return;               
+             return 0;               
          }    
 			aux.sit = LIV;
 		}

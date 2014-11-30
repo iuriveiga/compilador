@@ -601,7 +601,7 @@ token analex(void)
 						if(strcmp(tabela[i].comando, s) == 0){
 							printf("montou o token de palavra reservada\n");
 							tk.cat = PR;
-							tk.p_reservada = tabela[i].palavra;						
+							//tk.p_reservada = tabela[i].palavra;						
 							free(s);
 							return tk;
 						}						
@@ -633,6 +633,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
+	/*
 	token teste;
 	
 	while (!feof(fp)) {
@@ -646,7 +647,8 @@ int main(int argc, char *argv[])
 		
 				
 	} while (!feof(fp));
-	
+	*/
+	 programa();
 
 	return 0;
 }			
