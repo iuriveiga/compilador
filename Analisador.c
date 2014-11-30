@@ -1,9 +1,7 @@
 #include "Analisador.h"
-<<<<<<< HEAD
-#include "sintatico.h"
-=======
+
 #include <stdio.h>
->>>>>>> origin/master
+
 
 //Tabela de palavras
 
@@ -621,11 +619,7 @@ token analex(void)
 	}
 }
 
-<<<<<<< HEAD
 
-/*
-=======
->>>>>>> origin/master
 FILE *fp;
 
 int main(int argc, char *argv[])
@@ -644,47 +638,18 @@ int main(int argc, char *argv[])
 	
 	while (!feof(fp)) {
 		teste = analex();
-		//como está se trabalhando com enum fica complicado converter ela pra string é mais fácil exibir o código dela que a posição dela na sequência de inicialização		
 		printf("Categoria: %d\n", (int)teste.cat);
 		//como está se trabalhando com enum fica complicado converter ela pra string é mais fácil exibir o código dela que a posição dela na sequência de inicialização		
 		printf("Palavra Reservada: %d\n", (int)teste.p_reservada);
 		printf("Código: %d\n", (int)teste.cod);
 		printf("Valor Inteiro: %d\n", teste.ivalor);
-<<<<<<< HEAD
 		printf("Lexema: %s\n\n\n", teste.lexema);
 		
 				
 	} while (!feof(fp));
 	
-=======
-		printf("Lexema: %s\n\n\n", teste.lexema);				
-	}
->>>>>>> origin/master
-	
 	return 0;
 }			
 
-*/
 
-FILE *fp;
-
-
-int main(int argc, char *argv[])
-{		
-	
-	if(argc != 2){
-		printf("Voce não informou o arquivo.\n");
-		exit(1);	
-   }
-	
-	if((fp = fopen(argv[1], "rb")) == NULL){
-		printf("Arquivo nao pode ser aberto.\n");
-		exit(1);
-	}
-	
-	programa();
-	
-	
-	return 0;
-}	
 
