@@ -49,7 +49,7 @@ void declaracao_variaveis(void)
                aux.sit = PEN;           
            }else{
                   novo.escopo = escopo;
-                  novo.classe = VAR;
+                  novo.classe = VARIAVEL;
                   novo.tipo = CHAR;
                   strcpy(novo.lexema, aux.id);            
                   insere_simbolo(novo);
@@ -100,7 +100,7 @@ void declaracao_variaveis(void)
                aux.sit = PEN;           
             }else{
                 novo.escopo = escopo;
-                novo.classe = VAR;
+                novo.classe = VARIAVEL;
                 novo.tipo = INTEGER;
                 strcpy(novo.lexema, aux.id);            
                 insere_simbolo(novo); 
@@ -146,7 +146,7 @@ void declaracao_variaveis(void)
                aux.sit = PEN;           
          }else{
             novo.escopo = escopo;
-            novo.classe = VAR;
+            novo.classe = VARIAVEL;
             novo.tipo = REAL;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);
@@ -189,7 +189,7 @@ void declaracao_funcao(void)
 		if(aux.tipo == CHAR){
             
             novo.escopo = escopo;
-            novo.classe = FUNC;
+            novo.classe = FUNCAO;
             novo.tipo = CHAR;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);                
@@ -229,7 +229,7 @@ void declaracao_funcao(void)
 		else if(aux.tipo == INTEGER){
              
             novo.escopo = escopo;
-            novo.classe = FUNC;
+            novo.classe = FUNCAO;
             novo.tipo = INTEGER;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);        
@@ -270,7 +270,7 @@ void declaracao_funcao(void)
 		else if(aux.tipo == REAL){
              
             novo.escopo = escopo;
-            novo.classe = FUNC;
+            novo.classe = FUNCAO;
             novo.tipo = REAL;
             strcpy(novo.lexema, aux.id);            
             insere_simbolo(novo);        
@@ -319,7 +319,7 @@ void declaracao_funcao(void)
 			if(tk.cat == ID){
                  
                 novo.escopo = escopo;
-                novo.classe = FUNC;
+                novo.classe = FUNCAO;
                 novo.tipo = CHAR;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);              
@@ -367,7 +367,7 @@ void declaracao_funcao(void)
 			if(tk.cat == ID){
                 
                 novo.escopo = escopo;
-                novo.classe = FUNC;
+                novo.classe = FUNCAO;
                 novo.tipo = INTEGER;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                    
@@ -415,7 +415,7 @@ void declaracao_funcao(void)
 			if(tk.cat == ID){
                  
                 novo.escopo = escopo;
-                novo.classe = FUNC;
+                novo.classe = FUNCAO;
                 novo.tipo = REAL;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                    
@@ -464,7 +464,7 @@ void declaracao_funcao(void)
 			//Verifica se o proximo token é um identificador
 			if(tk.cat == ID){
                 novo.escopo = escopo;
-                novo.classe = FUNC;
+                novo.classe = FUNCAO;
                 novo.tipo = VOID;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                    
@@ -516,7 +516,7 @@ void declaracao_funcao_principal(void)
 		tk = analex();
 		
 		novo.escopo = escopo;
-        novo.classe = FUNC;
+        novo.classe = FUNCAO;
         strcpy(novo.lexema, "begin");            
         insere_simbolo(novo); 
 		
@@ -920,6 +920,7 @@ void comando(void)
 	
 
 	
+	/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS GET, PUT
 	//Verifica se o proximo token é GET
     if((tk.cat == PR) && (tk.p_reservada == GET)){
 		tk = analex();
@@ -966,6 +967,7 @@ void comando(void)
         tk = analex();
         comando();     
    }
+   */
 }
 
 void lista_de_expressoes(void)
@@ -1118,7 +1120,9 @@ void literal(void)
    if(tk.cat == CTL){
        tk = analex();                
    }
-   else if(tk.cat == CTS){
+   else //if(tk.cat == CTS){
+   	{
+   			
        tk = analex();     
    }
        

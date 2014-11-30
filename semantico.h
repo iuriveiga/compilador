@@ -5,7 +5,7 @@
 #define TAM 50
 #define MAXP 1000
 
-enum classes{VAR = 1, FUNC, PARAM}; 
+enum classes{VARIAVEL = 1, FUNCAO, PARAM}; 
 enum escopos{GL = 1, LO}; 
 enum zomb{F, T};
 
