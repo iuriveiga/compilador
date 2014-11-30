@@ -1,5 +1,9 @@
 #include "Analisador.h"
+<<<<<<< HEAD
 #include "sintatico.h"
+=======
+#include <stdio.h>
+>>>>>>> origin/master
 
 //Tabela de palavras
 
@@ -50,11 +54,10 @@ struct tabela_palavra_reservada{
 	"neq", NEQ
 };
 
-
+//pode tirar os simbolos especiais da lista de palavras reservadas já que estamos tratando eles diretamente no q0
 char palavra_reservada_hash[64][10] = {"and", "array", "begin", "case", "const", "div", "do", "downto", "else", "end", "file", "for", 
 "func", "goto", "if", "in", "label", "mod", "nil", "not", "of", "or", "packed", "proc", "progr", "record", "repeat", "set", "then", "to", "type",
-"until", "var", "while", "with", "char", "string", "integer", "real", "+", "-", "*", "/", "=", ".", ",", ";", ":", "'", "neq", "<", "<=", 
-">=", ">", "(", ")", "[", "]", "{", "}", "..", "@"};
+"until", "var", "while", "with", "char", "string", "integer", "real", "neq","@"};
 
 char hash[113][10];
 
@@ -140,7 +143,6 @@ int testePalavraReservada (char *string){
 		return 0;
 }
 
-
 int lin = 1;
 extern FILE *fp;
 
@@ -160,7 +162,6 @@ token analex(void)
 	char c, *s, *temp;
 	token tk;
 	
-	
 	s = (char *) malloc(MAX * sizeof(char));
 	
 	if(!s){
@@ -173,10 +174,13 @@ token analex(void)
 		if(!flag_estado_final){
 			c = fgetc(fp);
 		}
-		
+		//printf("Caractere: %c\n", c);
+		//printf("Estado: %d\n", estado);
+		//system("pause");
 		switch(estado){
 			case 0:
 			
+				//system("pause");
 				if(isspace(c)){
                     if(c == '\r') 
                         lin++;                        
@@ -191,6 +195,7 @@ token analex(void)
 				else if( c == '>')
 					estado = 10;
 				else if( c == '='){
+					//system("pause");
 					estado = 13;
 					flag_estado_final = TRUE;
 				}
@@ -242,7 +247,6 @@ token analex(void)
 					estado = 31;
 					*temp = c;
 					temp++;
-					flag_estado_final = TRUE;					
 				}
 				else if(isalpha(c)){
 					estado = 35;
@@ -368,6 +372,7 @@ token analex(void)
 			
 			//Monta o token valido para "="	
 			case 13:
+				//system("pause");
 				tk.cat = SN;
 				tk.cod = EQ;
 				break;
@@ -383,7 +388,8 @@ token analex(void)
 			//Se proximo token for '=' va¡ para estado 17
 			//senao va para o estado 16
 			case 15:
-				
+				//printf("cheguei aqui");
+				//system("pause");
 				if(c == '='){
 					estado = 17;
 					flag_estado_final = TRUE;
@@ -403,11 +409,14 @@ token analex(void)
 				return tk;
 				break;
 
-			//Monta o token valido para ':='	
+			//Monta o token valido para ':='
+			//tá ficando em loop no = e não tá formando o p´roximo token
 			case 17:
+				printf("chegou no lugar que forma o token do :=\n");
+				//system("pause");
 				tk.cat = SN;
 				tk.cod = ATB;
-				ungetc(c, fp);
+				//ungetc(c, fp);				
 				free(s);
 				return tk;
 				break;
@@ -474,7 +483,7 @@ token analex(void)
 					flag_estado_final = TRUE;
 				}
 				else{
-					estado = 36;
+					estado = 27;
 					flag_estado_final = TRUE;
 				}				
 				break;
@@ -526,7 +535,6 @@ token analex(void)
 					*temp = c;
 					temp++;
 				}
-					
 				else if(c == ','){
 					estado = 33;
 					*temp = c;
@@ -586,13 +594,15 @@ token analex(void)
 				*temp = '\0';
 				ungetc(c, fp);
 				
-				//Verifica se o comando em uma palavra reservada
+				//printf("%s", c);
+				//Verifica se o comando eh uma palavra reservada
 				
 				if (testePalavraReservada(s)) {
 					//aqui tem como melhorar pra não ter que fazer o loop para o retorno
 					//o problema é fazer cast pro tipo tk.p_reservada enum ou mudar de enum pra const char* palavra_reservada[] {"and", "or"}
 					for(i = 0; *tabela[i].comando; i++){
 						if(strcmp(tabela[i].comando, s) == 0){
+							printf("montou o token de palavra reservada\n");
 							tk.cat = PR;
 							tk.p_reservada = tabela[i].palavra;						
 							free(s);
@@ -611,14 +621,15 @@ token analex(void)
 	}
 }
 
+<<<<<<< HEAD
 
 /*
+=======
+>>>>>>> origin/master
 FILE *fp;
-
 
 int main(int argc, char *argv[])
 {		
-	
 	if(argc != 2){
 		printf("Voce não informou o arquivo.\n");
 		exit(1);	
@@ -631,7 +642,7 @@ int main(int argc, char *argv[])
 	
 	token teste;
 	
-	do {
+	while (!feof(fp)) {
 		teste = analex();
 		//como está se trabalhando com enum fica complicado converter ela pra string é mais fácil exibir o código dela que a posição dela na sequência de inicialização		
 		printf("Categoria: %d\n", (int)teste.cat);
@@ -639,11 +650,16 @@ int main(int argc, char *argv[])
 		printf("Palavra Reservada: %d\n", (int)teste.p_reservada);
 		printf("Código: %d\n", (int)teste.cod);
 		printf("Valor Inteiro: %d\n", teste.ivalor);
+<<<<<<< HEAD
 		printf("Lexema: %s\n\n\n", teste.lexema);
 		
 				
 	} while (!feof(fp));
 	
+=======
+		printf("Lexema: %s\n\n\n", teste.lexema);				
+	}
+>>>>>>> origin/master
 	
 	return 0;
 }			
