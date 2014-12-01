@@ -24,8 +24,6 @@ enum palavra_reservada{AND = 1, ARRAY, BEGIN, CASE, CONST, /*DIV,*/ DO, DOWNTO, 
 LABEL, /*MOD,*/ NIL, NOT, OF, OR, PACKED, PROC, PROGR, RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH, CHAR,
 STRING, INTEGER, REAL, NEQ};
 
-
-
 //Estrutura do token
 typedef struct token{
     enum categoria cat;	
@@ -38,13 +36,8 @@ typedef struct token{
     };       
 }token;
 
-
 typedef int boolean;
 
-
-
 token analex(void);
-
-
 
 #endif

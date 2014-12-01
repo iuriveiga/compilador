@@ -1,5 +1,5 @@
 #include "Analisador.h"
-#include "sintatico.h"
+#include "Sintatico.h"
 #include <stdio.h>
 
 //Tabela de palavras
@@ -171,13 +171,8 @@ token analex(void)
 		if(!flag_estado_final){
 			c = fgetc(fp);
 		}
-		//printf("Caractere: %c\n", c);
-		//printf("Estado: %d\n", estado);
-		//system("pause");
 		switch(estado){
 			case 0:
-			
-				//system("pause");
 				if(isspace(c)){
                     if(c == '\r') 
                         lin++;                        
@@ -192,7 +187,6 @@ token analex(void)
 				else if( c == '>')
 					estado = 10;
 				else if( c == '='){
-					//system("pause");
 					estado = 13;
 					flag_estado_final = TRUE;
 				}
@@ -385,8 +379,6 @@ token analex(void)
 			//Se proximo token for '=' va¡ para estado 17
 			//senao va para o estado 16
 			case 15:
-				//printf("cheguei aqui");
-				//system("pause");
 				if(c == '='){
 					estado = 17;
 					flag_estado_final = TRUE;
@@ -410,7 +402,6 @@ token analex(void)
 			//tá ficando em loop no = e não tá formando o p´roximo token
 			case 17:
 				printf("chegou no lugar que forma o token do :=\n");
-				//system("pause");
 				tk.cat = SN;
 				tk.cod = ATB;
 				//ungetc(c, fp);				
@@ -601,7 +592,7 @@ token analex(void)
 						if(strcmp(tabela[i].comando, s) == 0){
 							printf("montou o token de palavra reservada\n");
 							tk.cat = PR;
-							//tk.p_reservada = tabela[i].palavra;						
+							tk.p_reservada = tabela[i].palavra;						
 							free(s);
 							return tk;
 						}						
@@ -648,7 +639,7 @@ int main(int argc, char *argv[])
 				
 	} while (!feof(fp));
 	*/
-	 programa();
+	 //programa();
 
 	return 0;
 }			

@@ -33,54 +33,56 @@ void bloco(void)
 
 void declaracao_variaveis(void)
 {
+	//Verifica se o proximo token é um identificador;
+	if(tk.cat == PR){
+		strcpy(aux.id, tk.lexema);
+	    
+		tk = analex();			
+	   
+	   if((tk.cat == SN) && (tk.cod == OPP)){
+           aux.sit = PEN;           
+       }else{
+              novo.escopo = escopo;
+              novo.classe = VARIAVEL;
+              novo.tipo = CHAR;
+              strcpy(novo.lexema, aux.id);            
+              insere_simbolo(novo);
+   			//Verifica se o proximo token é ','
+   			tk = analex();
+   			if((tk.cat == SN) && (tk.cod == CMM)){
+              
+   				while(tk.cod == CMM){
+                             
+   					tk = analex();
+   					
+   					//Verifica se o proximo token é um ID
+   					if(tk.cat == ID){ 
+                   
+                                                 
+                        strcpy(novo.lexema, tk.lexema);
+                        insere_simbolo(novo);//
+                                     
+   						tk = analex();
+   					} else erro(lin, 1); //Chama a mensagem de erro
+   				}				
+   			}			
+   			//Verifica se o proximo token é um ':'
+   			if((tk.cat == SN) && (tk.cod == DEF)){
+                      
+   				tk = analex();
+   				declaracao_variaveis();//Chama a declaraçaõ de variaveis novamente
+   			} else {
+   				//aux.sit = PEN;
+               erro(lin, 8);			
+   			}
+    }
+	
 	//Verifica se o proximo token é do tipo CHAR
 	if((tk.cat == PR) && (tk.p_reservada == CHAR)){
 		aux.tipo = CHAR;
 	
 		tk = analex();
 		
-		//Verifica se o proximo token é um identificador;
-		if(tk.cat == ID){
-			strcpy(aux.id, tk.lexema);
-		    
-			tk = analex();			
-		   
-		   if((tk.cat == SN) && (tk.cod == OPP)){
-               aux.sit = PEN;           
-           }else{
-                  novo.escopo = escopo;
-                  novo.classe = VARIAVEL;
-                  novo.tipo = CHAR;
-                  strcpy(novo.lexema, aux.id);            
-                  insere_simbolo(novo);
-       			//Verifica se o proximo token é ','
-       			if((tk.cat == SN) && (tk.cod == CMM)){
-                  
-       				while(tk.cod == CMM){
-                                 
-       					tk = analex();
-       					
-       					//Verifica se o proximo token é um ID
-       					if(tk.cat == ID){ 
-                       
-                                                     
-                            strcpy(novo.lexema, tk.lexema);
-                            insere_simbolo(novo);//
-                                         
-       						tk = analex();
-       					} else erro(lin, 1); //Chama a mensagem de erro
-       				}				
-       			}			
-       			//Verifica se o proximo token é um ';'
-       			if((tk.cat == SN) && (tk.cod == SMC)){
-                          
-       				tk = analex();
-       				declaracao_variaveis();//Chama a declaraçaõ de variaveis novamente
-       			} else {
-       				//aux.sit = PEN;
-                   erro(lin, 8);			
-       			}
-        }
 				
 		} else erro(lin, 1); //Chama a mesangem de erro
 	}	

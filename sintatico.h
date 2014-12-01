@@ -5,8 +5,6 @@
 
 enum situacao{PEN = 1, LIV};
 
-
-
 typedef struct tab{
 	enum situacao sit;
 	int tipo;
@@ -35,8 +33,6 @@ int termo(void);
 int fator(void);
 int variavel(void);
 void erro(int, int);
-
-
 
 
 #endif

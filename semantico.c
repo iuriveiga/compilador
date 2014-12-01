@@ -212,12 +212,7 @@ void imprime_tabela(void)
                 printf("FUNC ");
                 printf("CHAR ");
                 printf("%d\n ",t_simb[i].escopo);     
-            }/*else if(t_simb[i].tipo == VOID){
-                printf("%s ",t_simb[i].lexema);
-                printf("FUNC ");
-                printf("VOID ");
-                printf("%d\n ",t_simb[i].escopo);     
-            }*/                         
+            }                        
        }        
    }
           
