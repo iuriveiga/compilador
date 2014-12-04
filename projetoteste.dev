@@ -51,17 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=Analisador.c
-CompileCpp=1
-Folder=Projeto1
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit2]
-FileName=Analisador.h
+FileName=analisador.c
 CompileCpp=1
 Folder=Projeto1
 Compile=1
@@ -71,16 +61,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=semantico.c
-CompileCpp=1
-Folder=Projeto1
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
 FileName=semantico.h
 CompileCpp=1
 Folder=Projeto1
@@ -90,7 +70,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit5]
+[Unit4]
 FileName=sintatico.c
 CompileCpp=1
 Folder=Projeto1
@@ -100,8 +80,28 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit6]
+[Unit5]
 FileName=sintatico.h
+CompileCpp=1
+Folder=Projeto1
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
+FileName=analisador.h
+CompileCpp=1
+Folder=Projeto1
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=semantico.c
 CompileCpp=1
 Folder=Projeto1
 Compile=1
