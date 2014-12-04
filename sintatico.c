@@ -204,25 +204,7 @@ void declaracao_funcao(void)
 				if((tk.cat == SN) && (tk.cod == CLP)){
 					tk = analex();
 					//Verifica se o proximo tokem é um '{'
-					/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-					if((tk.cat == SN) && (tk.cod == OPB)){
-						//Libreando aux
-						aux.sit = LIV;	
-						tk = analex();					
-						bloco_de_funcao();
-						//Verifica se o token é um '}'
-						if((tk.cat == SN) && (tk.cod == CLB)){
-                            escopo = GL;       
-							tk = analex();
-							
-                     
-							remove_simbolo();
-                     zombie_simbolo();							
-                     declaracao_funcao();
-						} else erro(lin, 5); //Chama mensagem de erro Caso não venha '}' 
 						
-					} else erro(lin, 4); //Chama mensagem de erro caso não venh '{'
-					*/							
 				} else erro(lin, 3); /*Chama mensagem de erro
 									 caso não venha ')' */
 			} else erro(lin, 2);						 
@@ -242,28 +224,7 @@ void declaracao_funcao(void)
 				parametros_formais();
 				//Verifica se o proximo token é um ')'
 				if((tk.cat == SN) && (tk.cod == CLP)){
-					tk = analex();
-					/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-					//Verifica se o proximo tokem é um '{'
-					if((tk.cat == SN) && (tk.cod == OPB)){
-						//Libreando aux
-						aux.sit = LIV;	
-						tk = analex();					
-						bloco_de_funcao();
-						//Verifica se o token é um '}'
-						if((tk.cat == SN) && (tk.cod == CLB)){
-							tk = analex();
-							escopo = GL;
-							
-							
-							remove_simbolo();
-                     zombie_simbolo();	
-							
-							declaracao_funcao();
-						} else erro(lin, 5); //Chama mensagem de erro Caso não venha '}' 
-						
-					} else erro(lin, 4); //Chama mensagem de erro caso não venh '{'
-				*/												
+					tk = analex();											
 				} else erro(lin, 3); /*Chama mensagem de erro
 									 caso não venha ')' */
 			} else erro(lin, 2);						 
@@ -285,28 +246,6 @@ void declaracao_funcao(void)
 				//Verifica se o proximo token é um ')'
 				if((tk.cat == SN) && (tk.cod == CLP)){
 					tk = analex();
-					/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-					//Verifica se o proximo tokem é um '{'
-					if((tk.cat == SN) && (tk.cod == OPB)){
-						//Libreando aux
-						aux.sit = LIV;	
-						tk = analex();					
-						bloco_de_funcao();
-						//Verifica se o token é um '}'
-						if((tk.cat == SN) && (tk.cod == CLB)){
-							tk = analex();
-							
-							escopo = GL;
-							
-							
-							remove_simbolo();
-                     zombie_simbolo();	
-                            
-							declaracao_funcao();
-						} else erro(lin, 5); //Chama mensagem de erro Caso não venha '}' 
-						
-					} else erro(lin, 4); //Chama mensagem de erro caso não venh '{'
-				*/
 				} else erro(lin, 3); /*Chama mensagem de erro
 									 caso não venha ')' */
 			} else erro(lin, 2);						 
@@ -336,25 +275,6 @@ void declaracao_funcao(void)
 					//Verifica se o proximo token é um ')'
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
-						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-						//Verifica se o proximo token é um '{'
-						if((tk.cat == SN) && (tk.cod == OPB)){
-							tk = analex();
-							bloco_de_funcao();
-							//Verifica se o proximo token é um '}'
-							if((tk.cat == SN) && (tk.cod == CLB)){
-								tk = analex();
-								escopo = GL;
-								
-								
-							   remove_simbolo();
-                        zombie_simbolo();	
-								
-								declaracao_funcao();
-							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
-							
-						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-					*/
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
@@ -383,26 +303,6 @@ void declaracao_funcao(void)
 					//Verifica se o proximo token é um ')'
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
-						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-						//Verifica se o proximo token é um '{'
-						if((tk.cat == SN) && (tk.cod == OPB)){
-							tk = analex();
-							bloco_de_funcao();
-							//Verifica se o proximo token é um '}'
-							if((tk.cat == SN) && (tk.cod == CLB)){
-								tk = analex();
-								
-								escopo = GL;
-								
-								
-							   remove_simbolo();
-                        zombie_simbolo();	
-								
-								declaracao_funcao();
-							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
-							
-						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-					*/
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
@@ -432,83 +332,13 @@ void declaracao_funcao(void)
 					//Verifica se o proximo token é um ')'
 					if((tk.cat == SN) && (tk.cod == CLP)){
 						tk = analex();
-						//Verifica se o proximo token é um '{'
-						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-						if((tk.cat == SN) && (tk.cod == OPB)){
-							tk = analex();
-							bloco_de_funcao();
-							//Verifica se o proximo token é um '}'
-							if((tk.cat == SN) && (tk.cod == CLB)){
-								tk = analex();
-								escopo = GL;
-								
-								
-							   remove_simbolo();
-                        zombie_simbolo();	
-								
-								declaracao_funcao();
-							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
-							
-						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-					*/
 					} else erro(lin, 3); //Chama o erro quando não vem um )
 
 				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
 				
 			} else erro(lin, 1);//Chama a mensage de erro
 		}
-
-        
-		//Verifica se o tipo é VOID
-        /* no nosso nao tem void
-		if((tk.cat == PR) && (tk.p_reservada == VOID)){
-			tk = analex();
-			//Verifica se o proximo token é um identificador
-			if(tk.cat == ID){
-                novo.escopo = escopo;
-                novo.classe = FUNCAO;
-                novo.tipo = VOID;
-                strcpy(novo.lexema, tk.lexema);            
-                insere_simbolo(novo);                    
-                      
-				tk = analex();
-				//Verifica se o proximo token é um '('
-				if((tk.cat == SN) && (tk.cod == OPP)){
-					tk = analex();
-					escopo = LO;
-					parametros_formais();
-					//Verifica se o proximo token é um ')'
-					if((tk.cat == SN) && (tk.cod == CLP)){
-						tk = analex();
-						/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-						//Verifica se o proximo token é um '{'
-						if((tk.cat == SN) && (tk.cod == OPB)){
-							tk = analex();
-							bloco_de_funcao();
-							//Verifica se o proximo token é um '}'
-							if((tk.cat == SN) && (tk.cod == CLB)){
-								tk = analex();
-								
-								
-							   remove_simbolo();
-                        zombie_simbolo();	
-								
-								escopo = GL;
-								declaracao_funcao();
-							} else erro(lin, 5); //Chama mensage de erro caso não venha '}'
-							
-						} else erro(lin, 4); //Chama mensagem de erro caso não venha '{'
-					*/ /*
-					} else erro(lin, 3); //Chama o erro quando não vem um )
-
-				} else erro(lin, 2);//Chama mensagem de erro caso não venha um (
-				
-			} else erro(lin, 1);//Chama a mensage de erro
-		}
-		*/			
 	}
-	
-	
 }
 
 void declaracao_funcao_principal(void)
@@ -516,31 +346,12 @@ void declaracao_funcao_principal(void)
      
 	if ((tk.cat == PR) && (tk.p_reservada == BEGIN)){
 		tk = analex();
-		
 		novo.escopo = escopo;
         novo.classe = FUNCAO;
         strcpy(novo.lexema, "begin");            
         insere_simbolo(novo); 
-		
-		
-		
 		escopo = LO; 
-		//Verificando se o token é um '{'
-		/*
-		if((tk.cat == SN) && (tk.cod == OPB)){
-			tk = analex();
-			bloco_de_funcao();
-			//verifica se o proximo tken é um '}'
-			if((tk.cat == SN) && (tk.cod == CLB)){  
-  	             printf("Tabela Declaracao Final \n\n");
-	                              
-				exit(0);//Finaliza a execução do programa
-			} else erro(lin, 5); //Chama mensagem de erro caso não venha '}'			
-			
-		} else erro(lin, 4); //Chama mesangem de erro caso não venha um '{'
-		*/ 		
-		
-	} else erro(lin, 6); // Chama uma mensagem de erro caso não venha o MAIN	
+	} else erro(lin, 6); // Chama uma mensagem de erro caso não venha o begin	
 }
 
 void parametros_formais(void)
@@ -603,14 +414,12 @@ void parametros_formais(void)
 			tk = analex();
 			//verifica se o proximo token é um identificador
 			if(tk.cat == ID){
-                
                novo.escopo = escopo;
                novo.classe = PARAM;
                novo.tipo = CHAR;
                strcpy(novo.lexema, tk.lexema);            
                insere_simbolo(novo);                  
-                      
-				tk = analex();
+			   tk = analex();
 			} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 		}
 	
@@ -619,13 +428,11 @@ void parametros_formais(void)
 			tk = analex();
 			//verifica se o proximo token é um identificador
 			if(tk.cat == ID){
-                
                 novo.escopo = escopo;
                 novo.classe = PARAM;
                 novo.tipo = INTEGER;
                 strcpy(novo.lexema, tk.lexema);            
                 insere_simbolo(novo);                  
-                      
 				tk = analex();
 			} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 		}
@@ -635,14 +442,12 @@ void parametros_formais(void)
 			tk = analex();
 			//verifica se o proximo token é um identificador
 			if(tk.cat == ID){
-                 
                  novo.escopo = escopo;
                  novo.classe = PARAM;
                  novo.tipo = REAL;
                  strcpy(novo.lexema, tk.lexema);            
                  insere_simbolo(novo);                 
-                      
-				tk = analex();
+	 			 tk = analex();
 			} else erro(lin, 1); //Chama uma mensagem de erro caso não venha um ID
 		
 		} else erro(lin, 7); //Chama mensagem de erro caso não seja feita nenhuma declaração
@@ -661,33 +466,24 @@ void atribuicao(void)
     int tipo1, tipo2;
     char id[50];
     tipo1 = tipo2 = 0;
-     
 	if(tk.cat == ID){
-        
       strcpy(id, tk.lexema);       
 		strcpy(aux.id, tk.lexema);
 		tk = analex();
-				
 		//Verifica se o proximo token é um '='
 		if((tk.cat == SN) && (tk.cod == ATB)){
-                   
          tipo1 = verifica_tabela(id);      
 			tk = analex();			
 			tipo2 = expressao();
-			
 			if(tipo1 != tipo2){
-                
               erro(lin, 12);           
             }
          			
 			//Verifica se o proximo token é um ';'
 			if((tk.cat == SN) && (tk.cod == SMC)){
 				tk = analex();
-			             			
 				comando();
-				
 			} else erro(lin, 8); //Chama mensagem de erro caso não venha um ';'
-			
 		} else{
 			aux.sit = PEN;
 		}
@@ -744,44 +540,30 @@ int chamada_de_funcao2(void)
 		if((tk.cat == SN) && (tk.cod == OPP)){
             strcpy(id, aux.id);
             strcpy(func.id, aux.id);
-            
-                   
-            tipo = verifica_tabela(id);
-          
-            
-			
+ 			tipo = verifica_tabela(id);
 			   do{
-              
                   tk = analex(); 
                   func.sit = PEN;   
       			   lista_de_expressoes();
-      			   
       			   if(func.sit == LIV){
                      if(tk.cod == CMM){
-                            
                          erro(lin, 14);                 
                      }                     
                   }
-			
             }while(tk.cod == CMM); 
-            
             if(func.sit == PEN){
                 erro(lin, 15);                    
             } 
 			   
 			//Verifica se o proximo token é um ')'
 			if((tk.cat == SN) && (tk.cod == CLP)){
-                  
 				tk = analex();
-			
 				aux.sit = LIV;
 				return tipo;
-			
 			} else erro(lin, 3); // Chama mensagem de erro caso não venha ')'
 		} else {
          if(tk.cod == CLP){
              aux.sit = LIV; 
-                
              return 0;               
          }    
 			aux.sit = LIV;
@@ -794,10 +576,6 @@ int chamada_de_funcao2(void)
                 strcpy(id, tk.lexema);
                 strcpy(func.id, tk.lexema);  
                 tipo = verifica_tabela(id);
-                
-                         
-				
-				
 				do{
                   func.sit = PEN; 
                   
@@ -816,7 +594,6 @@ int chamada_de_funcao2(void)
             if(func.sit == PEN){
                 erro(lin, 15);                    
             } 
-			
 				//Verifica se o proximo token é um ')'
 				if((tk.cat == SN) && (tk.cod == CLP)){
 					tk = analex();
@@ -840,20 +617,6 @@ void comando_condicional(void)
 			//verifica se o proximo token é um ')'
 			if((tk.cat == SN) && (tk.cod == CLP)){
 				tk = analex();
-				
-				//Verifica se o proximo token é um '{'
-				/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-				if((tk.cat == SN) && (tk.cod == OPB)){
-					tk = analex();
-					comando();
-					//Verifica se o proximo token é um '}'
-					if((tk.cat == SN) && (tk.cod == CLB)){
-						tk = analex();
-						comando();
-					} else erro( lin, 5); //chama erro caso não venha '}'
-					
-				} else erro(lin, 4); // chama err caso não venha '{'
-			*/	
 			} else erro(lin, 3); // chama erro caso não venha ')'
 			
 		} else erro(lin, 2); // chama o erro caso não venha um '('
@@ -863,18 +626,6 @@ void comando_condicional(void)
 	//Verifica se o proximo token é um ELSE
 	else if((tk.cat == PR) && (tk.p_reservada == ELSE)){
 		tk = analex();
-		//Verifica se o proximo token é um '{'
-		/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-		if((tk.cat == SN) && (tk.cod == OPB)){
-			tk = analex();
-			comando();
-			//Verifica se o proximo token é um '}'
-			if((tk.cat == SN) && (tk.cod == CLB)){
-				tk = analex();
-				comando();
-			} else erro(lin, 5); //chama erro caso não venha '}'
-		} else erro(lin, 4); //chama erro caso não venha '{'
-		*/
 	}
 }
 
@@ -890,21 +641,7 @@ void comando_repetitivo(void)
 			//Verifica se o proximo token é um ')'
 			if((tk.cat == SN) && (tk.cod == CLP)){
 				tk = analex();
-				//Verifica se o proximo token é '{'
-				/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS O OPB
-				if((tk.cat == SN) && (tk.cod == OPB)){
-					tk = analex();
-					comando();
-					//Verifica se o proximo token é '}'
-					if((tk.cat == SN) && (tk.cod == CLB)){
-						tk = analex();
-						comando();
-					} else erro(lin, 5);//Chama erro caso não venha '}'
-					
-				} else erro(lin, 4); //chama erro caso não venha '{'
-			*/				
 			} else erro(lin, 3); //Chama erro caso não venha ')'
-			
 		} else erro(lin, 2);//Chama erro caso não venha '('
 	}
 }
@@ -914,62 +651,11 @@ void comando(void)
         
 	atribuicao();	    
 
-	chamada_de_funcao2(); //Verificar a possibilidade de testar diretamente em comando...para evitar erros.
+	chamada_de_funcao2(); 
 	 
 	comando_condicional();
 	 
 	comando_repetitivo();
-	
-
-	
-	/* ESTA DANDO ERRO AQUI NAO TEMPOS O { E TAMBEM NAO TEMOS GET, PUT
-	//Verifica se o proximo token é GET
-    if((tk.cat == PR) && (tk.p_reservada == GET)){
-		tk = analex();
-		//Verifica se o proximo token é '('
-		if((tk.cat == SN) && (tk.cod == OPP)){
-			tk = analex();
-			if(tk.cat == ID){               
-				tk = analex();
-				
-				if((tk.cat == SN) && (tk.cod == CLP)){
-					tk = analex();
-					
-					if((tk.cat == SN) && (tk.cod == SMC)){               
-   					tk = analex();
-   					comando();
-					} else erro(lin, 8); //Chama erro caso não venha ';'
-					
-				} else erro(lin, 3); //Chama erro caso não venha ')'
-				
-			} else erro(lin, 1);
-			
-		} else erro(lin, 2);		
-	}
-	
-	else if((tk.cat == PR) && (tk.p_reservada == PUT)){
-		tk = analex();
-		if((tk.cat == SN) && (tk.cod == OPP)){
-			tk = analex();
-			literal();
-			expressao_simples();
-			//Verifica se o proximo token é um ')'
-			if((tk.cat == SN) && (tk.cod == CLP)){
-				tk = analex();
-				if((tk.cat == SN) && (tk.cod == SMC)){
-					tk = analex();
-					comando();
-				} else erro(lin, 8); //Chama erro caso não venha ';'
-				
-			} else erro(lin, 3); //Chama erro caso não venha ')'
-			
-		} else erro(lin, 2);//Chama erro caso não venha '('
-		
-	}else	if((tk.cat == SN) && (tk.cod == SMC)){
-        tk = analex();
-        comando();     
-   }
-   */
 }
 
 void lista_de_expressoes(void)
@@ -1068,12 +754,9 @@ int variavel(void)
 		strcpy(id, tk.lexema);
 		tk = analex();
 		 tipo = verifica_tabela(id);
-		 //printf("Variavel %s\n",aux.id);
-		// printf("tipo %d\n", tipo);
 		//Verifica se o proximo token é um ';'
 		if((tk.cat == SN) && (tk.cod == SMC)){
-      
-           	
+
      	}
      aux.sit = PEN; 		
    }  
@@ -1101,7 +784,6 @@ int fator(void)
      if(tipo1 != tipo2){
         return tipo1;         
      }else return tipo2;  
-       
   } 
   else if((tk.cat == SN) && (tk.cod == OPP)){
        tk = analex();
@@ -1112,9 +794,7 @@ int fator(void)
            tk = analex();
            return tipo1;            
        } else erro(lin, 3);
-                           
   }  
-
 }
 
 void literal(void)
@@ -1122,14 +802,10 @@ void literal(void)
    if(tk.cat == CTL){
        tk = analex();                
    }
-   else //if(tk.cat == CTS){
-   	{
-   			
+   else {
        tk = analex();     
    }
-       
 }
-
 
 void erro(int lin, int err)
 {	
@@ -1155,7 +831,7 @@ void erro(int lin, int err)
 			exit(1);
 			break;
 		case 6:
-			printf(" MAIN esperado ");
+			printf(" BEGIN esperado ");
 			exit(1);
 			break;
 		case 7:
@@ -1194,7 +870,6 @@ void erro(int lin, int err)
          printf("Argumento esperado ");
          exit(1);
          break;                       	
-            	
 	}	
 }
 

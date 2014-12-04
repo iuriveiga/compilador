@@ -4,7 +4,7 @@ CursorRow=603
 TopLine=600
 LeftChar=1
 Open=1
-Top=1
+Top=0
 [Editor_4]
 CursorCol=1
 CursorRow=37
@@ -13,7 +13,7 @@ LeftChar=1
 Open=1
 Top=0
 [Editors]
-Focused=0
+Focused=3
 Order=0,3,1,4,2
 [Editor_1]
 Open=1
@@ -31,10 +31,10 @@ TopLine=1
 LeftChar=1
 [Editor_3]
 Open=1
-Top=0
-CursorCol=11
-CursorRow=29
-TopLine=4
+Top=1
+CursorCol=1
+CursorRow=15
+TopLine=1
 LeftChar=1
 [Editor_5]
 Open=0
