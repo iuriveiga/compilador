@@ -147,13 +147,12 @@ token analex(void)
 {
 	
 	//ver qual o melhor local para incializar a tablea de palavra reservada
-	/*
 	int j;
 	for (j=0; j<64; j++) {
 	   	strcpy(hash[stringParaInt(palavra_reservada_hash[j])], palavra_reservada_hash[j]); 
 	   	//printf("O indice chave %d foi definido para a string %s\n", stringParaInt(palavra_reservada[i]), palavra_reservada[i]);
     }
-	*/
+	
   	boolean flag_estado_final = FALSE;
 	int estado = 0;
 	int i;
@@ -585,7 +584,7 @@ token analex(void)
 				
 				//printf("%s", c);
 				//Verifica se o comando eh uma palavra reservada
-				/*
+				
 				if (testePalavraReservada(s)) {
 					//aqui tem como melhorar pra não ter que fazer o loop para o retorno
 					//o problema é fazer cast pro tipo tk.p_reservada enum ou mudar de enum pra const char* palavra_reservada[] {"and", "or"}
@@ -598,16 +597,7 @@ token analex(void)
 							return tk;
 						}						
 					}
-				}*/
-			
-				for(i = 0; *tabela[i].comando; i++){
-					if(strcmp(tabela[i].comando, s) == 0){
-						tk.cat = PR;
-						tk.p_reservada = tabela[i].palavra;						
-						free(s);
-						return tk;
-					}						
-				}	
+				}
 				
 				//Monta um tokem para identificador
 				tk.cat = ID;
@@ -619,7 +609,7 @@ token analex(void)
 	}
 }
 
-
+/*
 FILE *fp;
 
 int main(int argc, char *argv[])
@@ -634,10 +624,9 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
-	/*
 	token teste;
 	
-	
+
 	while (!feof(fp)) {
 		teste = analex();
 		printf("Categoria: %d\n", (int)teste.cat);
@@ -649,10 +638,10 @@ int main(int argc, char *argv[])
 		
 				
 	} while (!feof(fp));
-	*/
-	programa();
-	return 0;
+	
 
+	return 0;
+*/
 }			
 
 
